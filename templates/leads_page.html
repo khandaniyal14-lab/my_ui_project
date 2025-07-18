@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard - Africa House Pakistan Trade Portal</title>
+    <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables */
+        :root {
+            --primary-green: #006A44;
+            --dark-green: #1E3923;
+            --light-green: #E6F3EE;
+            --gold: #BF8521;
+            --dark-grey-text: #333333;
+            --medium-grey-text: #666666;
+            --light-grey-bg: #F5F5F5;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-grey-text);
+            background-color: var(--light-grey-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-grow: 1;
+            width: 100%; /* Full width */
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 15px var(--shadow);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--primary-green);
+            box-shadow: 0 2px 4px var(--shadow);
+            min-height: 60px; /* Adjust height as needed */
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark-green);
+            text-decoration: none;
+        }
+
+        .header-logo img {
+            width: 200px; /* Adjust based on actual logo size */
+            margin-right: 10px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-item {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            font-size: 0.9em;
+            font-weight: 500;
+            padding-right: 30px;
+            transition: 0.3s ease;
+
+        }
+
+
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--border-color); /* Placeholder color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-grey-text);
+            font-weight: 600;
+            overflow: hidden; /* Ensure image fits */
+            border: 2px solid var(--primary-green);
+            flex-shrink: 0; /* Prevent shrinking on small screens */
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Profile Dropdown Menu */
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+            margin-top: 5px;
+        }
+
+        .profile-dropdown-content a {
+            color: var(--dark-grey-text);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .profile-dropdown-content a:hover {
+            background-color: var(--light-grey-bg);
+        }
+
+        .profile-dropdown-content a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .profile-dropdown-content a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .profile-dropdown.show .profile-dropdown-content {
+            display: block;
+        }
+
+        .profile-dropdown-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--medium-grey-text);
+        }
+
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--dark-green);
+            padding: 30px 0;
+            color: var(--white);
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-nav a img{
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            position: relative;
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--primary-green);
+            border-left: 5px solid var(--gold);
+            padding-left: 25px; /* Adjust for border */
+        }
+
+        .sidebar-nav a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-nav a svg {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: var(--light-grey-bg);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--dark-grey-text);
+            font-weight: 700;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            flex: 1; /* Distribute space */
+            min-width: 280px; /* Minimum width before wrapping */
+            gap: 15px;
+        }
+
+        .card-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-icon-wrapper.inquiries {
+            background-color: #FFF6E8; /* Light orange */
+        }
+        .card-icon-wrapper.matches {
+            background-color: #FFF6E8; /* Light green */
+        }
+        .card-icon-wrapper.feedback {
+            background-color: #FFF2E6; /* Light peach */
+        }
+
+        .card-icon-wrapper svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .card-icon-wrapper.inquiries img {
+            width: 30px;
+        }
+        .card-icon-wrapper.matches img {
+            width: 30px;
+        }
+        .card-icon-wrapper.feedback img {
+            width: 30px;
+        }
+
+        .card-content h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--dark-grey-text);
+            margin-bottom: 5px;
+        }
+
+        .card-content p {
+            font-size: 0.9em;
+            color: var(--medium-grey-text);
+        }
+
+        /* AI Assistant Card */
+        .ai-assistant-card {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ai-assistant-card-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ai-assistant-card-icon {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ai-assistant-card-icon img {
+            width: 40px;
+            
+        }
+
+        .ai-assistant-card-text h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--white);
+        }
+
+        .ai-assistant-card-text p {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .ai-assistant-card-arrow svg {
+            width: 24px;
+            height: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: transform 0.2s ease;
+        }
+
+        .ai-assistant-card:hover .ai-assistant-card-arrow svg {
+            transform: translateX(5px);
+        }
+
+        /* Lead Recommendations & New Connections */
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            color: var(--dark-grey-text);
+            font-weight: 600;
+        }
+
+        .list-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item-left h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--dark-grey-text);
+            margin-bottom: 5px;
+        }
+
+        .list-item-left p {
+            font-size: 0.85em;
+            color: var(--medium-grey-text);
+        }
+
+        .tag {
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .country-name {
+            font-size: 0.9em;
+            color: var(--medium-grey-text);
+            font-weight: 500;
+        }
+
+        /* Footer */
+ .main-footer {
+            background-color: #006A44;
+            color: #e5e7eb;
+            
+            /* margin-top: 40px;
+            margin-bottom: 40px; */
+            padding: 2.5rem;
+        }
+
+        .main-footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+   
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff; /* Ensure logo text is white */
+            text-decoration: none;
+        }
+
+        .logo img {
+
+            width: 220px;
+        }
+
+        .main-footer .copyright {
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            display: flex; /* For proper SVG centering if needed */
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ced4da;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 20px 0;
+                order: -1; /* Move sidebar to top on smaller screens */
+                height: auto;
+                overflow-x: auto; /* Allow horizontal scrolling for sidebar items */
+                white-space: nowrap; /* Prevent items from wrapping */
+            }
+
+            .sidebar-nav ul {
+                display: flex;
+                justify-content: center; /* Center items if they fit */
+                padding: 0 20px;
+            }
+
+            .sidebar-nav li {
+                margin-right: 20px; /* Space out horizontal items */
+                margin-bottom: 0;
+            }
+
+            .sidebar-nav a {
+                padding: 10px 15px;
+                border-left: none; /* Remove left border */
+                border-bottom: 3px solid transparent; /* Use bottom border for active state */
+            }
+
+            .sidebar-nav a.active {
+                background-color: transparent;
+                border-bottom-color: var(--gold);
+                padding-left: 15px; /* Reset padding for horizontal */
+            }
+
+            .sidebar-nav a svg {
+                display: block; /* Stack icon and text */
+                margin: 0 auto 5px auto; /* Center icon, add space below */
+            }
+            .sidebar-nav a span {
+                font-size: 0.8em;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .info-cards {
+                justify-content: center; /* Center cards when they wrap */
+            }
+
+            .card {
+                min-width: unset; /* Remove min-width restriction */
+                width: calc(50% - 10px); /* Two cards per row, with gap */
+            }
+
+            .ai-assistant-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .ai-assistant-card-left {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ai-assistant-card-icon {
+                margin-bottom: 10px;
+            }
+
+            .ai-assistant-card-arrow {
+                margin-top: 15px;
+            }
+
+            .list-section {
+                padding: 10px 0;
+            }
+
+            .list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+                gap: 5px;
+            }
+
+            .list-item-right {
+                width: 100%;
+                text-align: right;
+            }
+
+            .tag {
+                width: fit-content;
+                align-self: flex-end; /* Align tag to the right */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                padding: 10px 15px;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            .header-right {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+            }
+            .header-logo img {
+                width: 150px;
+            }
+            .header-item {
+                font-size: 0.8em;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .info-cards {
+                gap: 15px;
+            }
+
+            .card {
+                width: 100%; /* Stack cards on smallest screens */
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .card-icon-wrapper {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar-nav ul {
+                justify-content: flex-start; /* Allow scrolling from left if many items */
+            }
+            .sidebar-nav a {
+                font-size: 0.75em;
+                padding: 8px 10px;
+                flex-direction: column;
+            }
+            .sidebar-nav a svg {
+                width: 20px;
+                height: 20px;
+                margin-right: 0;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <a href="/" class="header-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="header-item">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot">
+                    <path d="M12 8V4H8"/><path d="M22 7.2L16.4 1.6C16 1.2 15.4 1 14.7 1H9.3C8.6 1 8 1.2 7.6 1.6L2 7.2C1.6 7.6 1.4 8.2 1.4 8.8V21.2C1.4 21.8 1.6 22.4 2 22.8L7.6 28.4C8 28.8 8.6 29 9.3 29H22.7C23.4 29 24 28.8 24.4 28.4L30 22.8C30.4 22.4 30.6 21.8 30.6 21.2V8.8C30.6 8.2 30.4 7.6 30 7.2Z" transform="scale(0.8) translate(2, 2)"></path>
+                    <path d="M9 18v3c0 .5.5 1 1 1h4c.5 0 1-.5 1-1v-3"/><path d="M8 8.9v-2.8h8v2.8" transform="scale(0.8) translate(2, 2)"></path>
+                    <circle cx="12" cy="12" r="2" transform="scale(0.8) translate(2, 2)"></circle>
+                    <circle cx="17" cy="12" r="2" transform="scale(0.8) translate(2, 2)"></circle>
+                    <circle cx="7" cy="12" r="2" transform="scale(0.8) translate(2, 2)"></circle>
+                </svg> -->
+                AI Assistant
+            </div>
+            <div class="header-item">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help">
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+                </svg> -->
+                Help
+            </div>
+            <div class="profile-dropdown">
+                <div class="profile-pic" onclick="toggleProfileDropdown()">
+                    <img src="https://placehold.co/40x40/BF8521/ffffff?text=U" alt="User Profile">
+                </div>
+                <div class="profile-dropdown-content" id="profileDropdown">
+                    <a href="vendor_profile.html">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        Vendor Profile
+                    </a>
+                    <a href="vendor_profile.html?tab=personal">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                        </svg>
+                        Personal Info
+                    </a>
+                    <a href="vendor_profile.html?tab=company">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
+                            <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path>
+                        </svg>
+                        Company Profile
+                    </a>
+                    <a href="vendor_profile.html?tab=settings">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        Account Settings
+                    </a>
+                    <a href="{{ url_for('logout') }}" style="color: #dc3545;">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24" style="fill: #dc3545;">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16,17 21,12 16,7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul> 
+                    <li>
+                        <a href="{{ url_for('index') }}">
+                            <img src="{{ url_for('static', filename='images/star.png') }}"alt="">
+                            <span>Home page</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vendor_dashboard.html" >
+                           <img src="{{ url_for('static', filename='images/dashboard.png') }}" alt="">
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="connections_page.html">
+                            <img src="{{ url_for('static', filename='images/connect.png') }}" alt="">
+                            <span>Connections</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="leads_page.html" class="active">
+                           <img src="{{ url_for('static', filename='images/search.png') }}" alt="">
+                            <span>Leads</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('ai_assistant_page') }}">
+                            <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="">
+                            <span>AI Assistant</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vendor_profile.html">
+                            <img src="{{ url_for('static', filename='images/DOWN.png') }}" alt="" style="width: 20px;">
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+
+            <h3>Lead Recommendations</h3>
+            <div class="list-section">
+                <div class="list-item">
+                    <div class="list-item-left">
+                        <h4>Ghana Imports</h4>
+                        <p>Industry</p>
+                    </div>
+                    <div class="list-item-right">
+                        <span class="tag">Agriculture</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-item-left">
+                        <h4>Congo Enterprises</h4>
+                        <p>Industry</p>
+                    </div>
+                    <div class="list-item-right">
+                        <span class="tag">Textiles</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-item-left">
+                        <h4>Congo Imports</h4>
+                        <p>Agricultures</p>
+                    </div>
+                    <div class="list-item-right">
+                        <span class="tag">Agricultures</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-item-left">
+                        <h4>Coffee Imports</h4>
+                        <p>Industry</p>
+                    </div>
+                    <div class="list-item-right">
+                        <span class="tag">Agriculture</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-item-left">
+                        <h4>Ghana Enterprises</h4>
+                        <p>Industry</p>
+                    </div>
+                    <div class="list-item-right">
+                        <span class="tag">Enterprises</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="list-item-left">
+                        <h4>Ethiopia Traders</h4>
+                        <p>Industry</p>
+                    </div>
+                    <div class="list-item-right">
+                        <span class="tag">Textiles</span>
+                    </div>
+                </div>
+            </div>
+
+          
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+                <!-- <span>AFRICA HOUSE PAKISTAN</span> -->
+            </a>
+            <p class="copyright">&copy; 2025 Africa House Trade Portal. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z"></path></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Profile dropdown functionality
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            const profileDropdown = dropdown.parentElement;
+            profileDropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(event) {
+            const profileDropdown = document.querySelector('.profile-dropdown');
+            if (!profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+
+        // Leads page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Leads page loaded successfully');
+
+            // Add any leads-specific functionality here
+        });
+    </script>
+</body>
+</html>

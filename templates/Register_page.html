@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account - Africa House Pakistan Trade Portal</title>
+    <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Common Variables & Reset (from previous code, adjusted for Inter font) */
+        :root {
+            --primary-green-dark: #006A44; /* Dark green from your provided code */
+            --primary-green: #006A44; /* Original green for form elements */
+            --light-green: #006A44;
+            --text-color-dark: #333;
+            --text-color-light: #fff;
+            --input-border: #ccc;
+            --input-focus-border: #888;
+            --button-bg: #BF8521; /* Gold color for the button */
+            --button-text: #fff;
+            --grey-text: #666;
+            --light-grey-bg: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Changed to Inter as per your new code */
+            line-height: 1.6;
+            color: var(--text-color-dark);
+            background-color: var(--light-grey-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* background-color: var(--text-color-light); */
+            /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .left-panel {
+            flex: 1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 106, 68, 0.9)),url('/static/images/signup.jpg'); /* Placeholder image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: var(--text-color-light);
+            position: relative; /* For the overlay */
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)); /* Dark gradient overlay */
+            z-index: 0;
+        }
+
+        .left-panel-content {
+            position: relative;
+            z-index: 1; /* Ensure content is above overlay */
+        }
+
+        .left-panel h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .left-panel p {
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .right-panel {
+            flex: 1.2; /* Slightly larger to accommodate inputs */
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--primary-green-dark); /* Using the dark green from your footer */
+            font-weight: 700;
+        }
+
+        .right-panel p.intro-text {
+            margin-bottom: 30px;
+            font-size: 0.95em;
+            color: var(--grey-text);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--grey-text);
+            font-size: 0.9em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            background-color: #F4F4F4;
+            border-radius: 50px;
+            font-size: 1em;
+            color: var(--text-color-dark);
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            border-color: var(--input-focus-border);
+        }
+
+ 
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--grey-text);
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+            width: auto;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 4px; /* Align with text */
+            margin-right: 10px;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9em;
+            line-height: 1.5;
+            color: var(--grey-text);
+        }
+
+        .checkbox-group label a {
+            color: var(--primary-green-dark); /* Using the dark green from your footer */
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .checkbox-group label a:hover {
+            text-decoration: underline;
+        }
+
+        button.create-account-btn {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        button.create-account-btn:hover {
+            background-color: #006A44;
+        }
+
+        /* ------------------- */
+        /* Footer (from your provided code) */
+        /* ------------------- */
+        .main-footer {
+            background-color: var(--primary-green-dark);
+            color: #e5e7eb;
+            margin-top: auto;
+        }
+
+        .main-footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff; /* Ensure logo text is white */
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 220px;
+        }
+
+        .main-footer .copyright {
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            display: flex; /* For proper SVG centering if needed */
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ced4da;
+        }
+
+        /* Flash Messages */
+        .flash-message {
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .flash-error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .flash-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .flash-warning {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+
+        .flash-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                margin: 20px;
+            }
+
+            .left-panel, .right-panel {
+                flex: none;
+                width: 100%;
+            }
+
+            .left-panel {
+                height: 300px; /* Adjust height for smaller screens */
+                padding: 30px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .right-panel {
+                padding: 30px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+
+            .right-panel h1 {
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            .right-panel p.intro-text {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) { /* Adjusting breakpoints for footer responsiveness */
+            .main-footer .container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .right-panel {
+                padding: 20px;
+            }
+
+            .left-panel h2 {
+                font-size: 1.5em;
+            }
+
+            .left-panel p {
+                font-size: 0.85em;
+            }
+
+            button.create-account-btn {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="left-panel-content">
+                <h2>Why Sign Up?</h2>
+                <p>Join Africa House Pakistan Trade Portal to discover opportunities and connect with trusted trade partners across Africa and Pakistan.</p>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h1>Create Your Account</h1>
+            <p class="intro-text">Sign up today to access exclusive trade leads, partner networks, and real-time market insights:</p>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages" style="margin-bottom: 20px;">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}" style="padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; font-weight: 500; border: 1px solid;">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/signup">
+                <div class="form-group">
+                    <label for="country">Select Your Country</label>
+                    <select id="country" name="country">
+                        <option value="">Select Your Country</option>
+                        <option value="pakistan">Pakistan</option>
+                        <option value="nigeria">Nigeria</option>
+                        <option value="south_africa">South Africa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Please Select Role:</label>
+                    <div class="radio-group">
+                        <label for="buyer">
+                            <input type="radio" id="buyer" name="role" value="buyer" checked> Buyer
+                        </label>
+                        <label for="vendor">
+                            <input type="radio" id="vendor" name="role" value="vendor"> Vendor
+                        </label>
+                        <label for="admin">
+                            <input type="radio" id="admin" name="role" value="admin"> Admin
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Enter the login Password" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password_again" name="password_again" placeholder="Enter the login Password again" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="company_name" name="company_name" placeholder="Enter Your Company Name Here" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="full_name" name="full_name" placeholder="Enter Your Full Name" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" id="mobile_number" name="mobile_number" placeholder="Enter Your Mobile Number" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms_agreement" name="terms_agreement" required>
+                    <label for="terms_agreement">By signing up, you agree to the Africa House Pakistan Trade Portal's <a href="#">Membership Agreement</a>, <a href="#">Terms of Use</a>, and <a href="#">Privacy Policy</a>.</label>
+                </div>
+
+                <button type="submit" class="create-account-btn">Create an Account</button>
+
+                <p class="login-link" style="text-align: center; margin-top: 20px; font-size: 0.95em; color: var(--grey-text);">
+                    Already have an account? <a href="/login.html" style="color: var(--primary-green-dark); text-decoration: none; font-weight: 500;">Sign In</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <a href="main_page.html" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+                
+            </a>
+            <p class="copyright">&copy; 2025 Africa House Trade Portal. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="www.facebook.com" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="www.twitter.com" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z"></path></svg>
+                </a>
+                <a href="www.linkedin.com" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

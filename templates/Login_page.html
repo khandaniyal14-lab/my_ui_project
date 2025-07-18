@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Africa House Pakistan Trade Portal</title>
+    <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Common Variables & Reset */
+        :root {
+            --primary-green-dark: #006A44; /* Dark green from your footer */
+            --light-green: #006A44;
+            --text-color-dark: #333;
+            --text-color-light: #fff;
+            --input-border: #ccc;
+            --input-focus-border: #888;
+            --button-bg: #BF8521; /* Gold color for the button */
+            --button-text: #fff;
+            --grey-text: #666;
+            --light-grey-bg: #f5f5f5;
+            --accent-line: #ddd; /* Color for the line under "Sign In" */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color-dark);
+            background-color: var(--light-grey-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* background-color: var(--text-color-light); */
+            /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .left-panel {
+            flex: 1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 106, 68, 0.9)),url('/static/images/login-left.jpg'); /* Placeholder image for login page */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: var(--text-color-light);
+            position: relative;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)); /* Dark gradient overlay */
+            z-index: 0;
+        }
+
+        .left-panel-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-panel h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .left-panel p {
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .right-panel {
+            flex: 1.2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--primary-green-dark);
+            font-weight: 700;
+            position: relative; /* For the underline effect */
+            display: inline-block; /* To make the pseudo-element align with the text */
+        }
+
+        .right-panel h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            /* bottom: -5px; 
+            width: 50px;  */
+            height: 3px;
+            background-color: var(--accent-line); /* Color of the underline */
+            border-radius: 5px;
+        }
+
+        .right-panel p.intro-text {
+            margin-top: 20px; /* Space after h1 and its underline */
+            margin-bottom: 30px;
+            font-size: 0.95em;
+            color: var(--grey-text);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative; /* For the eye icon in password field */
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            background-color: #F4F4F4;
+            border-radius: 50px;
+            font-size: 1em;
+            color: var(--text-color-dark);
+            outline: none;
+            transition: border-color 0.3s ease;/* Slightly off-white for input background */
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--input-focus-border);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--grey-text);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            color: var(--primary-green-dark);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        button.continue-btn {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-weight: 500;
+            margin-top: 10px;
+            margin-bottom: 30px; /* Space before "Or continue with" */
+        }
+
+        button.continue-btn:hover {
+            background-color: #006A44; /* Slightly darker gold on hover */
+        }
+
+        .or-continue-with {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .or-continue-with::before,
+        .or-continue-with::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%; /* Length of the lines */
+            height: 1px;
+            background-color: #eee;
+        }
+
+        .or-continue-with::before {
+            left: 0;
+        }
+
+        .or-continue-with::after {
+            right: 0;
+        }
+
+        .social-login-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-login-button {
+            background-color: #fff;
+            border: 1px solid var(--input-border);
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            height: 48px; /* Standardize height with inputs */
+            width: 60px; /* Adjust width as needed */
+        }
+
+        .social-login-button:hover {
+            background-color: #f9f9f9;
+            border-color: var(--input-focus-border);
+        }
+
+        .social-login-button img {
+            height: 24px; /* Adjust icon size */
+            width: 24px;
+        }
+
+        .signup-link {
+            text-align: center;
+            font-size: 0.95em;
+            color: var(--grey-text);
+        }
+
+        .signup-link a {
+            color: var(--primary-green-dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ------------------- */
+        /* Flash Messages */
+        /* ------------------- */
+        .flash-message {
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .flash-error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .flash-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .flash-warning {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+
+        .flash-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+
+        /* ------------------- */
+        /* Footer (from your provided code) */
+        /* ------------------- */
+        .main-footer {
+            background-color: var(--primary-green-dark);
+            color: #e5e7eb;
+            margin-top: auto;
+        }
+
+        .main-footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #ffffff; /* Ensure logo text is white */
+            text-decoration: none;
+        }
+
+        .logo img {
+
+            width: 220px;
+        }
+
+        .main-footer .copyright {
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            display: flex; /* For proper SVG centering if needed */
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ced4da;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                margin: 20px;
+            }
+
+            .left-panel, .right-panel {
+                flex: none;
+                width: 100%;
+            }
+
+            .left-panel {
+                height: 300px;
+                padding: 30px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            .right-panel {
+                padding: 30px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+
+            .right-panel h1 {
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            .right-panel h1::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .right-panel p.intro-text {
+                text-align: center;
+                margin-top: 15px; /* Adjust for centered h1 */
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-footer .container.footer-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .right-panel {
+                padding: 20px;
+            }
+
+            .left-panel h2 {
+                font-size: 1.5em;
+            }
+
+            .left-panel p {
+                font-size: 0.85em;
+            }
+
+            button.continue-btn {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+
+            .social-login-buttons {
+                flex-wrap: wrap; /* Allow buttons to wrap */
+                justify-content: space-around; /* Distribute space */
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="left-panel-content">
+                <h2>Why Sign In?</h2>
+                <p>Sign in to the Africa House Pakistan Trade Portal to continue exploring opportunities and connecting with trusted trade partners across Africa and Pakistan.</p>
+            </div>
+        </div>
+        <div class="right-panel">
+            <h1>Sign In</h1>
+            <p class="intro-text">Welcome back! Sign in to access your trade dashboard, connect with partners, and stay updated with the latest market insights.</p>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages" style="margin-bottom: 20px;">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}" style="padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; font-weight: 500;">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/login.html">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Enter the login Password" required>
+                    <!-- <span class="password-toggle" onclick="togglePasswordVisibility()"> -->
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> -->
+                    </span>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot Password</a>
+                </div>
+
+                <button type="submit" class="continue-btn">Continue</button>
+
+                <div class="or-continue-with">Or continue with</div>
+
+                <div class="social-login-buttons">
+                    <button type="button" class="social-login-button" aria-label="Continue with Google">
+                        <img src="{{ url_for('static', filename='images/gmail.png') }}" alt="Google icon"> </button>
+                    <button type="button" class="social-login-button" aria-label="Continue with Microsoft">
+                        <img src="{{ url_for('static', filename='images/google.png') }}" alt="Microsoft icon"> </button>
+                    <button type="button" class="social-login-button" aria-label="Continue with Facebook">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook icon">
+                    </button>
+                </div>
+
+                <p class="signup-link">If you have not account? <a href="/signup">Create an Account</a></p>
+            </form>
+        </div>
+    </div>
+
+     <footer class="main-footer">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+                <!-- <span>AFRICA HOUSE PAKISTAN</span> -->
+            </a>
+            <p class="copyright">&copy; 2025 Africa House Trade Portal. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z"></path></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.querySelector('.password-toggle svg');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                // Change icon to 'eye-off' (closed eye) if using Feather Icons or similar
+                toggleIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.54 18.54 0 0 1 2.51-2.73m6.8-5.8a3 3 0 1 1-3.53-3.53m-2.07-2.07L2 2m20 20L2 2"></path>'; // Placeholder for eye-off
+            } else {
+                passwordField.type = 'password';
+                // Change icon back to 'eye' (open eye)
+                toggleIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+    </script>
+</body>
+</html>

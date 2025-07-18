@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Africa House Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #006A44 0%, #004d32 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo a:hover {
+            opacity: 0.8;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .welcome-text {
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #006A44;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .card-btn {
+            background: linear-gradient(135deg, #006A44 0%, #004d32 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background: linear-gradient(135deg, #004d32 0%, #003d28 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 106, 68, 0.3);
+        }
+
+        .user-details {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .user-details h2 {
+            color: #006A44;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .detail-value {
+            color: #666;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status-verified {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .user-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .main-content {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card, .user-details {
+                padding: 20px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><a href="/">Africa House Pakistan</a></div>
+            <div class="user-info">
+                <span class="welcome-text">Welcome, {{ session.full_name }}!</span>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Vendor Dashboard</h3>
+                <p>Access your vendor dashboard to manage your products, orders, and business profile.</p>
+                <a href="/vendor_dashboard.html" class="card-btn">Go to Dashboard</a>
+            </div>
+
+            <div class="card">
+                <h3>Explore Products</h3>
+                <p>Browse and discover products from other vendors and explore new business opportunities.</p>
+                <a href="/leads_page.html" class="card-btn">Explore Products</a>
+            </div>
+
+            <div class="card">
+                <h3>AI Assistant</h3>
+                <p>Get intelligent insights and assistance for your business decisions and trade opportunities.</p>
+                <a href="{{ url_for('ai_assistant_page') }}" class="card-btn">Talk to AI</a>
+            </div>
+
+            <div class="card">
+                <h3>My Profile</h3>
+                <p>Update your profile information, company details, and account settings.</p>
+                <a href="/vendor_profile.html" class="card-btn">View Profile</a>
+            </div>
+        </div>
+
+        <div class="user-details">
+            <h2>Account Information</h2>
+            <div class="detail-row">
+                <span class="detail-label">Full Name:</span>
+                <span class="detail-value">{{ session.full_name }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">{{ session.email }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Role:</span>
+                <span class="detail-value">{{ session.role|title }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Account Status:</span>
+                <span class="detail-value">
+                    <span class="status-badge status-verified">Verified</span>
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Member Since:</span>
+                <span class="detail-value">{{ current_date }}</span>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
