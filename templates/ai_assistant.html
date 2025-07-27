@@ -600,18 +600,7 @@
                     <img src="https://placehold.co/40x40/BF8521/ffffff?text=U" alt="User Profile">
                 </div>
                 <div class="profile-dropdown-content" id="profileDropdown">
-                    <a href="vendor_profile.html">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        Vendor Profile
-                    </a>
-                    <a href="vendor_profile.html?tab=personal">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                        </svg>
-                        Personal Info
+                    
                     </a>
                     <a href="vendor_profile.html?tab=company">
                         <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
@@ -626,13 +615,13 @@
                         </svg>
                         Account Settings
                     </a>
-                    <a href="{{ url_for('logout') }}" style="color: #dc3545;">
+                    <a href="{{ url_for('login') }}" style="color: #dc3545;">
                         <svg class="profile-dropdown-icon" viewBox="0 0 24 24" style="fill: #dc3545;">
                             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                             <polyline points="16,17 21,12 16,7"></polyline>
                             <line x1="21" y1="12" x2="9" y2="12"></line>
                         </svg>
-                        Logout
+                        Login
                     </a>
                 </div>
             </div>
@@ -656,13 +645,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="connections_page.html">
+                        <a href="{{ url_for('connections_page') }}">
                             <img src="{{ url_for('static', filename='images/connect.png') }}" alt="">
-                            <span>Connections</span>
+                            <span>Products</span>
                         </a>
                     </li>
                     <li>
-                        <a href="leads_page.html">
+                        <a href="{{url_for('leads_page')}}">
                             <img src="{{ url_for('static', filename='images/search.png') }}" alt="">
                             <span>Leads</span>
                         </a>
@@ -674,9 +663,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="vendor_profile.html">
+                        <a href="{{ url_for('vendor_profile') }}">
                             <img src="{{ url_for('static', filename='images/DOWN.png') }}" alt="" style="width: 20px;">
-                            <span>Profile</span>
+                            <span>Company Profile</span>
                         </a>
                     </li>
                 </ul>

@@ -27,10 +27,20 @@ def verify_token(token, expiration=86400):  # 24 hours default
 def send_verification_email(mail, user_email, user_name, verification_token):
     """Send email verification email to user"""
     try:
-        # Create verification URL
-        verification_url = url_for('verify_email', 
-                                 token=verification_token, 
-                                 _external=True)
+        # Try to get the current request context for dynamic URL
+        from flask import request, has_request_context
+
+        if has_request_context():
+            # Use the actual host from the request
+            base_url = request.url_root.rstrip('/')
+            print(f"Using dynamic base URL from request: {base_url}")
+        else:
+            # Fallback to environment variable
+            base_url = os.getenv('BASE_URL', 'http://localhost:5000')
+            print(f"Using fallback base URL from environment: {base_url}")
+
+        verification_url = f"{base_url}/verify-email/{verification_token}"
+        print(f"Generated verification URL: {verification_url}")
         
         # Create email message
         msg = Message(
@@ -131,7 +141,17 @@ def send_verification_email(mail, user_email, user_name, verification_token):
                     
                     <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
                     <p style="word-break: break-all; color: #006A44;">{verification_url}</p>
-                    
+
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <strong>Alternative Verification Method:</strong><br>
+                        If the link doesn't work (especially on mobile devices), you can:
+                        <ol>
+                            <li>Open the Africa House Pakistan website on the same computer where you registered</li>
+                            <li>Go to the login page and click "Resend Verification Email"</li>
+                            <li>Or contact support with your verification token: <strong>{verification_token}</strong></li>
+                        </ol>
+                    </div>
+
                     <div class="warning">
                         <strong>Important:</strong> This verification link will expire in 24 hours for security reasons. If you don't verify your email within this time, you'll need to register again.
                     </div>
@@ -163,6 +183,12 @@ def send_verification_email(mail, user_email, user_name, verification_token):
 
         Please verify your email address by clicking the following link:
         {verification_url}
+
+        ALTERNATIVE VERIFICATION:
+        If the link doesn't work (especially on mobile), you can:
+        1. Open the website on the same computer where you registered
+        2. Go to login page and click "Resend Verification Email"
+        3. Or contact support with your verification token: {verification_token}
 
         This link will expire in 24 hours.
 

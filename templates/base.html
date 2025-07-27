@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Africa House Pakistan{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">Africa House</a>
+        <nav class="navbar">
+            <a href="{{ url_for('main_page') }}">Main</a>
+            <a href="{{ url_for('leads_page') }}">Leads</a>
+            <a href="{{ url_for('connection_page') }}">Connections</a>
+            <a href="{{ url_for('ai_assistant') }}">AI Assistant</a>
+            <a href="{{ url_for('vendor_profile') }}">Profile</a>
+        </nav>
+        <div class="icons">
+            <div id="menu-btn" class="menu-icon">☰</div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul>
+            <li><a href="{{ url_for('main_page') }}">Main</a></li>
+            <li><a href="{{ url_for('leads_page') }}">Leads</a></li>
+            <li><a href="{{ url_for('connection_page') }}">Connections</a></li>
+            <li><a href="{{ url_for('ai_assistant') }}">AI Assistant</a></li>
+            <li><a href="{{ url_for('vendor_profile') }}">Profile</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content">
+        {% block content %}
+        <!-- Page-specific content will be injected here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Africa House Pakistan. All rights reserved.</p>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

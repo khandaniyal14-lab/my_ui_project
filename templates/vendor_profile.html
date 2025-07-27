@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Profile - Africa House Pakistan Trade Portal</title>
+    <title>Editable Vendor Profile - Africa House Pakistan Trade Portal</title>
     <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +22,8 @@
             --white: #FFFFFF;
             --border-color: #E0E0E0;
             --shadow: rgba(0, 0, 0, 0.05);
+            --success-green: #10B981;
+            --error-red: #EF4444;
         }
 
         /* Base Styles */
@@ -40,26 +43,15 @@
             min-height: 100vh;
         }
 
-        .profile-container {
-            display: flex;
-            flex-grow: 1;
-            width: 100%; /* Full width */
-            margin: 0 auto;
-            background-color: var(--white);
-            box-shadow: 0 0 15px var(--shadow);
-            overflow: hidden;
-        }
-
-        /* Header (reused from dashboard) */
+        /* Header */
         .main-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 30px;
-            background-color: #006A44;
+            background-color: var(--primary-green);
             box-shadow: 0 2px 4px var(--shadow);
             min-height: 60px;
-
         }
 
         .header-left {
@@ -72,13 +64,40 @@
             align-items: center;
             font-weight: 700;
             font-size: 1.1rem;
-            color: var(--dark-green);
+            color: var(--white);
             text-decoration: none;
         }
 
         .header-logo img {
-            width: 200px;
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            background-color: var(--white);
+            border-radius: 4px;
+            padding: 4px 8px;
             margin-right: 10px;
+        }
+
+        .logo-upload-area {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo-upload-area:hover .logo-overlay {
+            opacity: 1;
+        }
+
+        .logo-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 4px;
         }
 
         .header-right {
@@ -88,45 +107,42 @@
         }
 
         .header-item {
-          display: flex;
-  align-items: center;
-  color: var(--white);
-  font-size: 0.9em;
-  font-weight: 500;
-  padding-right: 30px;
-  transition: 0.3s ease;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: 0.3s ease;
         }
 
         .header-item svg {
             width: 20px;
             height: 20px;
             margin-right: 5px;
-            color: var(--primary-green);
         }
 
         .profile-pic {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: var(--border-color);
+            background-color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--medium-grey-text);
+            color: var(--white);
             font-weight: 600;
             overflow: hidden;
-            border: 2px solid var(--primary-green);
-            flex-shrink: 0;
-            position: relative;
+            border: 2px solid var(--white);
             cursor: pointer;
         }
+
         .profile-pic img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* Profile Dropdown Menu */
+        /* Profile Dropdown */
         .profile-dropdown {
             position: relative;
             display: inline-block;
@@ -139,7 +155,7 @@
             top: 100%;
             background-color: var(--white);
             min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             z-index: 1000;
             border: 1px solid var(--border-color);
@@ -159,32 +175,29 @@
 
         .profile-dropdown-content a:last-child {
             border-bottom: none;
+            color: #dc3545;
         }
 
         .profile-dropdown-content a:hover {
             background-color: var(--light-grey-bg);
         }
 
-        .profile-dropdown-content a:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .profile-dropdown-content a:last-child {
-            border-radius: 0 0 8px 8px;
-        }
-
         .profile-dropdown.show .profile-dropdown-content {
             display: block;
         }
 
-        .profile-dropdown-icon {
-            width: 16px;
-            height: 16px;
-            fill: var(--medium-grey-text);
+        /* Container */
+        .profile-container {
+            display: flex;
+            flex-grow: 1;
+            width: 100%;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 15px var(--shadow);
+            overflow: hidden;
         }
 
-
-        /* Sidebar (reused from dashboard) */
+        /* Sidebar */
         .sidebar {
             width: 250px;
             background-color: var(--dark-green);
@@ -222,201 +235,419 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-                  .sidebar-nav img {
-  width: 20px;
-  margin-right: 10px;
-}
+        .sidebar-nav svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
 
-        /* Main Content - Profile Specific */
+        /* Main Content */
         .main-content {
             flex-grow: 1;
             padding: 40px;
             background-color: var(--light-grey-bg);
         }
 
-        h1 {
-            font-size: 2em;
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 2em;
             color: var(--dark-grey-text);
             font-weight: 700;
         }
 
-        .vendor-info {
+        .edit-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--medium-grey-text);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-grey-text);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Profile Sections */
+        .profile-section {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .profile-section:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--dark-grey-text);
+        }
+
+        /* Company Info Section */
+        .company-info {
             display: flex;
             align-items: center;
             gap: 25px;
-            margin-bottom: 40px;
-            padding: 20px; /* Added padding to align with image */
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px var(--shadow);
         }
 
-        .vendor-avatar {
+        .avatar-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .company-avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid var(--primary-green);
-            flex-shrink: 0;
+            border: 4px solid var(--primary-green);
+            position: relative;
+            cursor: pointer;
         }
 
-        .vendor-avatar img {
+        .company-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .vendor-details h2 {
+        .avatar-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .avatar-container:hover .avatar-overlay {
+            opacity: 1;
+        }
+
+        .company-details {
+            flex: 1;
+        }
+
+        .company-details h2 {
             font-size: 1.8em;
             font-weight: 700;
             color: var(--dark-grey-text);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
-        .vendor-details p {
+        .company-details p {
             font-size: 1em;
             color: var(--medium-grey-text);
             margin-bottom: 5px;
         }
 
-        .vendor-details .industry {
-            font-size: 0.9em;
+        .industry-tag {
+            display: inline-block;
+            background-color: var(--light-green);
             color: var(--primary-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
             font-weight: 500;
+            margin-top: 8px;
         }
 
-        /* About Us Section */
-        .about-us-section {
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px var(--shadow);
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-
-        .about-us-section h3 {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: var(--dark-grey-text);
+        /* Form Styles */
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .about-us-section p {
-            font-size: 0.95em;
-            line-height: 1.7;
-            color: var(--medium-grey-text);
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--dark-grey-text);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background-color: var(--white);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(0, 106, 68, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
         }
 
         /* Products Section */
-        .products-section {
-            margin-bottom: 40px;
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
         }
 
-        .products-section h3 {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: var(--dark-grey-text);
-            margin-bottom: 20px;
+        .product-card {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: var(--white);
         }
 
-        .products-section ul {
-            list-style: none; /* Remove default bullets */
-            counter-reset: product-counter; /* Initialize counter */
+        .product-card:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
         }
 
-        .products-section li {
-            font-size: 0.95em;
-            color: var(--medium-grey-text);
-            margin-bottom: 10px;
+        .product-image-container {
             position: relative;
-            padding-left: 25px; /* Space for custom number */
+            height: 200px;
+            overflow: hidden;
         }
 
-        .products-section li::before {
-            counter-increment: product-counter; /* Increment counter */
-            content: counter(product-counter) "."; /* Display counter */
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-overlay {
             position: absolute;
-            left: 0;
-            color: var(--dark-grey-text); /* Color of the number */
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-image-container:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger {
+            background-color: var(--error-red);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #DC2626;
+            transform: scale(1.1);
+        }
+
+        .add-product-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            background-color: transparent;
+            color: var(--medium-grey-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
             font-weight: 500;
         }
 
-        /* Contacts Section */
-        .contacts-section {
-            margin-bottom: 40px;
+        .add-product-btn:hover {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+            background-color: var(--light-green);
         }
 
-        .contacts-section h3 {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: var(--dark-grey-text);
-            margin-bottom: 20px;
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            gap: 20px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            font-size: 1em;
-            color: var(--dark-grey-text);
+            gap: 16px;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: var(--light-grey-bg);
+            transition: all 0.3s ease;
         }
 
-        .contact-item:last-child {
-            margin-bottom: 0;
+        .contact-item:hover {
+            background-color: var(--light-green);
         }
 
-        .contact-item svg {
-            width: 22px;
-            height: 22px;
-            color: var(--primary-green);
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--light-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
         }
 
-        .contact-item a {
-            color: var(--dark-grey-text);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .contact-item a:hover {
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
             color: var(--primary-green);
         }
 
+        .contact-info {
+            flex: 1;
+        }
 
-        /* Footer (reused from dashboard) */
-       .main-footer {
-            background-color: #006A44;
+        .contact-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--medium-grey-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-size: 16px;
+            color: var(--dark-grey-text);
+            font-weight: 500;
+        }
+
+        .contact-value a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--primary-green);
             color: #e5e7eb;
-            
-            /* margin-top: 40px;
-            margin-bottom: 40px; */
             padding: 2.5rem;
         }
 
-        .main-footer .container {
+        .footer-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-   
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .logo {
+        .footer-logo {
             display: flex;
             align-items: center;
             font-weight: 700;
             font-size: 1.1rem;
-            color: #ffffff; /* Ensure logo text is white */
+            color: var(--white);
             text-decoration: none;
         }
 
-        .logo img {
-
-            width: 220px;
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            background-color: var(--white);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-right: 12px;
         }
 
-        .main-footer .copyright {
+        .copyright {
             font-size: 0.9rem;
             color: #adb5bd;
         }
@@ -427,16 +658,30 @@
         }
 
         .social-links a {
-            color: #ffffff;
-            display: flex; /* For proper SVG centering if needed */
+            color: var(--white);
+            display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.3s ease;
-        }
-        .social-links a:hover {
-            color: #ced4da;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
 
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .editing {
+            border-color: var(--primary-green) !important;
+            box-shadow: 0 0 0 3px rgba(0, 106, 68, 0.1) !important;
+        }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
@@ -450,17 +695,16 @@
                 order: -1;
                 height: auto;
                 overflow-x: auto;
-                white-space: nowrap;
             }
 
             .sidebar-nav ul {
                 display: flex;
                 justify-content: center;
                 padding: 0 20px;
+                gap: 20px;
             }
 
             .sidebar-nav li {
-                margin-right: 20px;
                 margin-bottom: 0;
             }
 
@@ -468,6 +712,9 @@
                 padding: 10px 15px;
                 border-left: none;
                 border-bottom: 3px solid transparent;
+                flex-direction: column;
+                text-align: center;
+                min-width: 80px;
             }
 
             .sidebar-nav a.active {
@@ -476,163 +723,165 @@
                 padding-left: 15px;
             }
 
-            .sidebar-nav a img {
-                display: block;
-                margin: 0 auto 5px auto;
-            }
-            .sidebar-nav a span {
-                font-size: 0.8em;
+            .sidebar-nav svg {
+                margin-right: 0;
+                margin-bottom: 4px;
             }
 
             .main-content {
                 padding: 20px;
             }
 
-            .vendor-info {
+            .company-info {
                 flex-direction: column;
                 text-align: center;
-                align-items: center;
-                padding: 20px;
             }
-            .vendor-details h2 {
-                font-size: 1.5em;
-            }
-            .vendor-details p, .vendor-details .industry {
-                font-size: 0.9em;
-            }
-            .about-us-section, .products-section, .contacts-section {
-                padding: 20px;
+
+            .products-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
             .main-header {
                 flex-direction: column;
-                padding: 10px 15px;
-                gap: 10px;
+                padding: 15px;
+                gap: 15px;
                 align-items: flex-start;
             }
+
             .header-right {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
+                gap: 15px;
                 width: 100%;
             }
+
             .header-logo img {
-                width: 150px;
-            }
-            .header-item {
-                font-size: 0.8em;
+                height: 36px;
             }
 
-            h1 {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .edit-controls {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .page-title {
                 font-size: 1.8em;
-                margin-bottom: 20px;
             }
-            h3 {
-                font-size: 1.3em;
-            }
-            .vendor-avatar {
+
+            .company-avatar {
                 width: 100px;
                 height: 100px;
+            }
+
+            .profile-section {
+                padding: 20px;
             }
         }
 
         @media (max-width: 480px) {
-            .sidebar-nav ul {
-                justify-content: flex-start;
-            }
-            .sidebar-nav a {
-                font-size: 0.75em;
-                padding: 8px 10px;
-                flex-direction: column;
-            }
-            .sidebar-nav a svg {
-                width: 20px;
-                height: 20px;
-                margin-right: 0;
-            }
-
             .main-content {
                 padding: 15px;
             }
 
-            h1 {
+            .page-title {
                 font-size: 1.5em;
             }
 
-            .vendor-details h2 {
-                font-size: 1.3em;
+            .company-details h2 {
+                font-size: 1.5em;
             }
-            .vendor-details p, .vendor-details .industry {
-                font-size: 0.85em;
+
+            .profile-section {
+                padding: 15px;
             }
-            .about-us-section p, .products-section li, .contact-item {
-                font-size: 0.9em;
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
         }
     </style>
 </head>
+
 <body>
     <header class="main-header">
         <div class="header-left">
             <a href="/" class="header-logo">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+                <div class="logo-upload-area" id="headerLogoContainer">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}"
+                        alt="" id="headerLogo">
+                    <div class="logo-overlay hidden" id="headerLogoOverlay">
+                        <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                            <polyline points="14,2 14,8 20,8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10,9 9,9 8,9" />
+                        </svg>
+                    </div>
+                </div>
+                <input type="file" id="headerLogoInput" class="hidden" accept="image/*">
             </a>
         </div>
         <div class="header-right">
             <div class="header-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot">
-                    <path d="M12 8V4H8"/><path d="M22 7.2L16.4 1.6C16 1.2 15.4 1 14.7 1H9.3C8.6 1 8 1.2 7.6 1.6L2 7.2C1.6 7.6 1.4 8.2 1.4 8.8V21.2C1.4 21.8 1.6 22.4 2 22.8L7.6 28.4C8 28.8 8.6 29 9.3 29H22.7C23.4 29 24 28.8 24.4 28.4L30 22.8C30.4 22.4 30.6 21.8 30.6 21.2V8.8C30.6 8.2 30.4 7.6 30 7.2Z" transform="scale(0.8) translate(2, 2)"></path>
-                    <path d="M9 18v3c0 .5.5 1 1 1h4c.5 0 1-.5 1-1v-3"/><path d="M8 8.9v-2.8h8v2.8" transform="scale(0.8) translate(2, 2)"></path>
-                    <circle cx="12" cy="12" r="2" transform="scale(0.8) translate(2, 2)"></circle>
-                    <circle cx="17" cy="12" r="2" transform="scale(0.8) translate(2, 2)"></circle>
-                    <circle cx="7" cy="12" r="2" transform="scale(0.8) translate(2, 2)"></circle>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 8V4H8" />
+                    <rect width="16" height="12" x="4" y="8" rx="2" />
+                    <path d="m14 12-3.5 2L7 12" />
                 </svg>
                 AI Assistant
             </div>
             <div class="header-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help">
-                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <path d="M12 17h.01" />
                 </svg>
                 Help
             </div>
             <div class="profile-dropdown">
                 <div class="profile-pic" onclick="toggleProfileDropdown()">
-                    <img src="https://placehold.co/40x40/BF8521/ffffff?text=U" alt="User Profile">
+                    <img src="https://images.pexels.com/photos/1308885/pexels-photo-1308885.jpeg?auto=compress&cs=tinysrgb&w=400"
+                        alt="User Profile">
                 </div>
                 <div class="profile-dropdown-content" id="profileDropdown">
-                    <a href="vendor_profile.html">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        Vendor Profile
-                    </a>
-                    <a href="vendor_profile.html?tab=personal">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                        </svg>
-                        Personal Info
-                    </a>
-                    <a href="vendor_profile.html?tab=company">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path>
+                    <a href="{{ url_for('vendor_profile') }}">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" />
                         </svg>
                         Company Profile
                     </a>
-                    <a href="vendor_profile.html?tab=settings">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    <a href="#settings">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                         </svg>
                         Account Settings
                     </a>
-                    <a href="{{ url_for('logout') }}" style="color: #dc3545;">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24" style="fill: #dc3545;">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                            <polyline points="16,17 21,12 16,7"></polyline>
-                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                    <a href="{{ url_for('logout') }}">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16,17 21,12 16,7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
                         </svg>
                         Logout
                     </a>
@@ -647,38 +896,73 @@
                 <ul>
                     <li>
                         <a href="{{ url_for('index') }}">
-                            <img src="{{ url_for('static', filename='images/star.png') }}" alt="">
-                            <span>Home page</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9,22 9,12 15,12 15,22" />
+                            </svg>
+                            <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="vendor_dashboard.html">
-                            <img src="{{ url_for('static', filename='images/dashboard.png') }}" alt="">
+                        <a href="{{ url_for('vendor_dashboard') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="7" height="9" x="3" y="3" rx="1" />
+                                <rect width="7" height="5" x="14" y="3" rx="1" />
+                                <rect width="7" height="9" x="14" y="12" rx="1" />
+                                <rect width="7" height="5" x="3" y="16" rx="1" />
+                            </svg>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="connections_page.html">
-                           <img src="{{ url_for('static', filename='images/connect.png') }}" alt="">
-                            <span>Connections</span>
+                        <a href="{{ url_for('connections_page') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                            <span>Products</span>
                         </a>
                     </li>
                     <li>
-                        <a href="leads_page.html">
-                          <img src="{{ url_for('static', filename='images/search.png') }}" alt="">
+                        <a href="{{ url_for('leads_page') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="M21 21l-4.35-4.35" />
+                            </svg>
                             <span>Leads</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url_for('ai_assistant_page') }}">
-                            <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 8V4H8" />
+                                <rect width="16" height="12" x="4" y="8" rx="2" />
+                                <path d="m14 12-3.5 2L7 12" />
+                            </svg>
                             <span>AI Assistant</span>
                         </a>
                     </li>
                     <li>
-                        <a href="vendor_profile.html" class="active">
-                            <img src="{{ url_for('static', filename='images/DOWN.png') }}" alt="" style="width: 20px;">
-                            <span>Profile</span>
+                        <a href="{{ url_for('vendor_profile') }}" class="active">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <span>Company Profile</span>
                         </a>
                     </li>
                 </ul>
@@ -686,78 +970,279 @@
         </aside>
 
         <main class="main-content">
-            <h1>Vendor Profile</h1>
-
-            <div class="vendor-info">
-                <div class="vendor-avatar">
-                    <img src="https://placehold.co/120x120/E6F3EE/1E3923?text=Profile" alt="Vendor Avatar">
-                </div>
-                <div class="vendor-details">
-                    <h2>Sierra Coffee Exports</h2>
-                    <p>Freetown, Sierra Leone</p>
-                    <p class="industry">Industry: Agriculture</p>
+            <div class="page-header">
+                <h1 class="page-title">Company Profile</h1>
+                <div class="edit-controls">
+                    <button class="btn btn-primary" id="editBtn" onclick="toggleEditMode()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        Edit Profile
+                    </button>
+                    <button class="btn btn-secondary hidden" id="cancelBtn" onclick="cancelEdit()">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary hidden" id="saveBtn" onclick="saveChanges()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20,6 9,17 4,12" />
+                        </svg>
+                        Save Changes
+                    </button>
                 </div>
             </div>
 
-            <div class="about-us-section">
-                <h3>About Us</h3>
-                <p>We are a dedicated coffee trading company specializing in the sourcing and distribution of premium African coffee beans. With a deep passion for quality and a strong network of local farmers and cooperatives, we ensure every batch of coffee reflects the rich aroma, flavor, and heritage of Africa's finest coffee-growing regions.</p>
+            <!-- Company Info Section -->
+            <div class="profile-section">
+                <div class="company-info">
+                    <div class="avatar-container">
+                        <div class="company-avatar" id="companyAvatarContainer">
+                            <img src="{{company_logo}}" alt="Company Avatar" id="companyAvatar">
+                            <div class="avatar-overlay hidden" id="avatarOverlay">
+                                <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                                    <polyline points="14,2 14,8 20,8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                    <polyline points="10,9 9,9 8,9" />
+                                </svg>
+                            </div>
+                        </div>
+                        <input type="file" id="avatarInput" name="company_logo" class="hidden" accept="image/*">
+                    </div>
+                    <div class="company-details">
+                        <div id="companyNameDisplay">
+                            <h2 id="companyName">{{company_name}}</h2>
+                        </div>
+                        <div id="companyNameEdit" class="hidden">
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" name="company_name" class="form-input" id="companyNameInput"
+                                    value="{{company_name}}">
+                            </div>
+                        </div>
+
+                        <div id="locationDisplay">
+                            <p id="location">{{location}}</p>
+                        </div>
+                        <div id="locationEdit" class="hidden">
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" name="location" class="form-input" id="locationInput"
+                                    value="{{location}}">
+                            </div>
+                        </div>
+
+                        <div id="industryDisplay">
+                            <span class="industry-tag" id="industry">{{industry}}</span>
+                        </div>
+                        <div id="industryEdit" class="hidden">
+                            <div class="form-group">
+                                <label class="form-label">Industry</label>
+                                <input type="text" name="industry" class="form-input" id="industryInput"
+                                    value="{{industry}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="products-section">
-                <h3>Products</h3>
-                <ul>
-                    <li>Arabica Coffee Beans</li>
-                    <li>Robusta Coffee Beans</li>
-                </ul>
+            <!-- About Us Section -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h3 class="section-title">About Us</h3>
+                </div>
+                <div id="aboutUsDisplay">
+                    <p id="aboutUsText">{{about_us}}</p>
+                </div>
+                <div id="aboutUsEdit" class="hidden">
+                    <div class="form-group">
+                        <label class="form-label">Company Description</label>
+                        <textarea class="form-input form-textarea" id="aboutUsInput"
+                            name="about_us"> We are a dedicated coffee trading company specializing in the sourcing and distribution of premium African coffee beans. With a deep passion for quality and a strong network of local farmers and cooperatives, we ensure every batch of coffee reflects the rich aroma, flavor, and heritage of Africa's finest coffee-growing regions.</textarea>
+                        <p style="font-size: 12px; color: var(--medium-grey-text); margin-top: 8px;">
+                            Describe your company's mission, values, and what makes you unique.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div class="contacts-section">
-                <h3>Contacts</h3>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail">
-                        <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                    </svg>
-                    <a href="mailto:Sample@gmail.com">Sample@gmail.com</a>
+            <!-- Products Section -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h3 class="section-title">Products & Services</h3>
+                    <button class="btn btn-primary hidden" id="addProductBtn" onclick="addProduct()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        Add Product
+                    </button>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.95-3.95A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4.18 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                    <span>091-56368439</span>
+                <div class="products-grid" id="productsContainer">
+                    {% for product in products %}
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+                        </div>
+                        <div class="product-content">
+                            <h4
+                                style="font-size: 1.2em; font-weight: 600; margin-bottom: 12px; color: var(--dark-grey-text);">
+                                {{ product.name }}
+                            </h4>
+                            <p style="color: var(--medium-grey-text); line-height: 1.6;">
+                                {{ product.description }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe">
-                        <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
-                    </svg>
-                    <a href="http://www.sample.com" target="_blank">www.sample.com</a>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h3 class="section-title">Contact Information</h3>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <div id="emailDisplay">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">
+                                    {% if user %}
+                                    <a href="mailto:{{email}}" id="emailValue">{{email}}</a>
+                                    {% else %}
+                                    <a href="#">No email available</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div id="emailEdit" class="hidden">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" id="emailInput" name="email" value="{{email}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.95-3.95A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4.18 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <div id="phoneDisplay">
+                                <div class="contact-label">Phone</div>
+                                <div class="contact-value">
+                                    {% if user %}
+                                    <a href="tel:{{'phone'}}}" id="phoneValue">{{phone}}</a>
+                                    {% else %}
+                                    <a href="#">No number available</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div id="phoneEdit" class="hidden">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-input" id="phoneInput" name="phone" value="{{phone}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                <path d="M2 12h20" />
+                            </svg>
+                        </div>
+                        <div class="contact-info">
+                            <div id="websiteDisplay">
+                                <div class="contact-label">Website</div>
+                                <div class="contact-value">
+                                    {% if user %}
+                                    <a href="{{website}}" target="_blank" id="websiteValue">{{website}}</a>
+                                    {% else %}
+                                    <a href="#">No email available</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div id="websiteEdit" class="hidden">
+                                <label class="form-label">Website URL</label>
+                                <input type="url" class="form-input" id="websiteInput" name="website"
+                                    value="{{website}}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
-   <footer class="main-footer">
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
-                <!-- <span>AFRICA HOUSE PAKISTAN</span> -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="/" class="footer-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+                    alt="">
+                <span></span>
             </a>
             <p class="copyright">&copy; 2025 Africa House Trade Portal. All Rights Reserved.</p>
             <div class="social-links">
                 <a href="#" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
                 </a>
                 <a href="#" aria-label="Twitter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z" />
+                    </svg>
                 </a>
                 <a href="#" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z" />
+                    </svg>
                 </a>
             </div>
         </div>
     </footer>
 
     <script>
+
+        let products = [];
+        try {
+            products = JSON.parse('{{ products_json|safe }}');
+        } catch (e) {
+            products = [];
+        }
+        // Now use products for rendering
+
+        // Global state
+        let isEditing = false;
+
+
         // Profile dropdown functionality
         function toggleProfileDropdown() {
             const dropdown = document.getElementById('profileDropdown');
@@ -766,40 +1251,374 @@
         }
 
         // Close dropdown when clicking outside
-        window.addEventListener('click', function(event) {
+        window.addEventListener('click', function (event) {
             const profileDropdown = document.querySelector('.profile-dropdown');
             if (!profileDropdown.contains(event.target)) {
                 profileDropdown.classList.remove('show');
             }
         });
 
-        // Vendor profile functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Vendor Profile page loaded successfully');
+        // Edit mode functionality
+        function toggleEditMode() {
+            isEditing = !isEditing;
+            updateEditMode();
+        }
 
-            // Handle URL parameters for different tabs
-            const urlParams = new URLSearchParams(window.location.search);
-            const tab = urlParams.get('tab');
+        function updateEditMode() {
+            const editBtn = document.getElementById('editBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const addProductBtn = document.getElementById('addProductBtn');
+            const headerLogoOverlay = document.getElementById('headerLogoOverlay');
+            const avatarOverlay = document.getElementById('avatarOverlay');
 
-            if (tab) {
-                console.log('Loading tab:', tab);
-                // You can add tab switching logic here
-                // For example, show different sections based on the tab parameter
-                switch(tab) {
-                    case 'personal':
-                        console.log('Showing personal info tab');
-                        break;
-                    case 'company':
-                        console.log('Showing company profile tab');
-                        break;
-                    case 'settings':
-                        console.log('Showing settings tab');
-                        break;
-                    default:
-                        console.log('Showing default profile tab');
+            // Toggle button visibility
+            if (isEditing) {
+                editBtn.classList.add('hidden');
+                cancelBtn.classList.remove('hidden');
+                saveBtn.classList.remove('hidden');
+                addProductBtn.classList.remove('hidden');
+                headerLogoOverlay.classList.remove('hidden');
+                avatarOverlay.classList.remove('hidden');
+            } else {
+                editBtn.classList.remove('hidden');
+                cancelBtn.classList.add('hidden');
+                saveBtn.classList.add('hidden');
+                addProductBtn.classList.add('hidden');
+                headerLogoOverlay.classList.add('hidden');
+                avatarOverlay.classList.add('hidden');
+            }
+
+            // Toggle form fields
+            toggleFormFields('companyName', isEditing);
+            toggleFormFields('location', isEditing);
+            toggleFormFields('industry', isEditing);
+            toggleFormFields('aboutUs', isEditing);
+            toggleFormFields('email', isEditing);
+            toggleFormFields('phone', isEditing);
+            toggleFormFields('website', isEditing);
+
+            // Update products display
+            renderProducts();
+        }
+
+        function toggleFormFields(fieldName, editing) {
+            const displayElement = document.getElementById(fieldName + 'Display');
+            const editElement = document.getElementById(fieldName + 'Edit');
+
+            if (editing) {
+                displayElement.classList.add('hidden');
+                editElement.classList.remove('hidden');
+            } else {
+                displayElement.classList.remove('hidden');
+                editElement.classList.add('hidden');
+            }
+        }
+
+        function cancelEdit() {
+            isEditing = false;
+            // Reset form values to original
+            document.getElementById('companyNameInput').value = document.getElementById('companyName').textContent;
+            document.getElementById('locationInput').value = document.getElementById('location').textContent;
+            document.getElementById('industryInput').value = document.getElementById('industry').textContent;
+            document.getElementById('aboutUsInput').value = document.getElementById('aboutUsText').textContent;
+            document.getElementById('emailInput').value = document.getElementById('emailValue').textContent;
+            document.getElementById('phoneInput').value = document.getElementById('phoneValue').textContent;
+            document.getElementById('websiteInput').value = document.getElementById('websiteValue').textContent;
+
+            updateEditMode();
+        }
+
+        function saveChanges() {
+            const formData = new FormData();
+            formData.append('company_name', document.getElementById('companyNameInput').value);
+            formData.append('location', document.getElementById('locationInput').value);
+            formData.append('industry', document.getElementById('industryInput').value);
+            formData.append('about_us', document.getElementById('aboutUsInput').value);
+            formData.append('email', document.getElementById('emailInput').value);
+            formData.append('phone', document.getElementById('phoneInput').value);
+            formData.append('website', document.getElementById('websiteInput').value);
+            formData.append('products_and_services', JSON.stringify(products));
+            const logoInput = document.getElementById('avatarInput');
+            if (logoInput && logoInput.files.length > 0) {
+                formData.append('company_logo', logoInput.files[0]);
+            }
+
+            for (let i = 1; i <= 5; i++) { // Adjust range as needed const
+                imgInput = document.getElementById(`productImageInput${i}`); if (imgInput && imgInput.files.length > 0) {
+                    formData.append(`product_image${i}`, imgInput.files[0]);
                 }
             }
+
+            fetch('/update_vendor_profile', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        // Update display values from form inputs
+                        document.getElementById('companyName').textContent = document.getElementById('companyNameInput').value;
+                        document.getElementById('location').textContent = document.getElementById('locationInput').value;
+                        document.getElementById('industry').textContent = document.getElementById('industryInput').value;
+                        document.getElementById('aboutUsText').textContent = document.getElementById('aboutUsInput').value;
+                        document.getElementById('emailValue').textContent = document.getElementById('emailInput').value;
+                        document.getElementById('emailValue').href = 'mailto:' + document.getElementById('emailInput').value;
+                        document.getElementById('phoneValue').textContent = document.getElementById('phoneInput').value;
+                        document.getElementById('phoneValue').href = 'tel:' + document.getElementById('phoneInput').value;
+                        document.getElementById('websiteValue').textContent = document.getElementById('websiteInput').value;
+                        document.getElementById('websiteValue').href = 'https://' +
+                            document.getElementById('websiteInput').value.replace(/^https?:\/\//, '');
+
+                        isEditing = false;
+                        updateEditMode();
+                        showNotification('Profile updated successfully!', 'success');
+                    } else {
+                        showNotification('Failed to update profile!', 'error');
+                    }
+                })
+        }
+
+        // Image upload functionality
+        function setupImageUpload(triggerId, inputId, targetId) {
+            const trigger = document.getElementById(triggerId);
+            const input = document.getElementById(inputId);
+            const target = document.getElementById(targetId);
+
+            trigger.addEventListener('click', () => {
+                if (isEditing) {
+                    input.click();
+                }
+            });
+
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        target.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Drag and drop functionality
+            trigger.addEventListener('dragover', (e) => {
+                if (isEditing) {
+                    e.preventDefault();
+                    trigger.style.opacity = '0.7';
+                }
+            });
+
+            trigger.addEventListener('dragleave', () => {
+                trigger.style.opacity = '1';
+            });
+
+            trigger.addEventListener('drop', (e) => {
+                if (isEditing) {
+                    e.preventDefault();
+                    trigger.style.opacity = '1';
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            target.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+        }
+
+        // Products functionality
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                container.appendChild(productCard);
+            });
+
+            if (isEditing) {
+                const addButton = createAddProductButton();
+                container.appendChild(addButton);
+            }
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+        <div class="product-image-container">
+            <img src="${product.image}" alt="${product.name}" class="product-image" id="productImage${product.id}">
+            <div class="product-overlay" onclick="uploadProductImage('${product.id}')">
+                <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                    <polyline points="14,2 14,8 20,8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10,9 9,9 8,9" />
+                </svg>
+            </div>
+            ${isEditing ? `
+            <div class="product-actions">
+                <button class="action-btn btn-danger" onclick="removeProduct('${product.id}')">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            ` : ''}
+            <input type="file" id="productImageInput${product.id}" class="hidden" accept="image/*"
+                onchange="handleProductImageUpload('${product.id}', this)">
+        </div>
+        <div class="product-content">
+            ${isEditing ? `
+            <div class="form-group">
+                <label class="form-label">Product Name</label>
+                <input type="text" class="form-input" value="${product.name}"
+                    onchange="updateProduct('${product.id}', 'name', this.value)">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea class="form-input form-textarea"
+                    onchange="updateProduct('${product.id}', 'description', this.value)">${product.description}</textarea>
+            </div>
+            ` : `
+            <h4 style="font-size: 1.2em; font-weight: 600; margin-bottom: 12px; color: var(--dark-grey-text);">
+                ${product.name}</h4>
+            <p style="color: var(--medium-grey-text); line-height: 1.6;">${product.description}</p>
+            `}
+        </div>
+        `;
+            return card;
+        }
+
+        function createAddProductButton() {
+            const button = document.createElement('button');
+            button.className = 'add-product-btn';
+            button.onclick = addProduct;
+            button.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+        </svg>
+        Add New Product
+        `;
+            return button;
+        }
+
+        function addProduct() {
+            const newProduct = {
+                id: Date.now().toString(),
+                name: 'New Product',
+                description: 'Product description...',
+                image: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=400'
+            };
+            products.push(newProduct);
+            renderProducts();
+        }
+
+        function removeProduct(productId) {
+            products = products.filter(p => p.id !== productId);
+            renderProducts();
+        }
+
+        function updateProduct(productId, field, value) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                product[field] = value;
+            }
+        }
+
+        function uploadProductImage(productId) {
+            if (isEditing) {
+                document.getElementById(`productImageInput${productId}`).click();
+            }
+        }
+
+        function handleProductImageUpload(productId, input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById(`productImage${productId}`).src = e.target.result;
+                    updateProduct(productId, 'image', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: ${type === 'success' ? 'var(--success-green)' : 'var(--error-red)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 10000;
+        font-weight: 500;
+        animation: slideIn 0.3s ease;
+        `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            // Setup image uploads
+            setupImageUpload('headerLogoContainer', 'headerLogoInput', 'headerLogo');
+            setupImageUpload('companyAvatarContainer', 'avatarInput', 'companyAvatar');
+
+            // Initial render
+            renderProducts();
+
+            console.log('Editable Vendor Profile page loaded successfully');
         });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+        @keyframes slideIn {
+        from {
+        transform: translateX(100%);
+        opacity: 0;
+        }
+        to {
+        transform: translateX(0);
+        opacity: 1;
+        }
+        }
+
+        @keyframes slideOut {
+        from {
+        transform: translateX(0);
+        opacity: 1;
+        }
+        to {
+        transform: translateX(100%);
+        opacity: 0;
+        }
+        }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
+
 </html>

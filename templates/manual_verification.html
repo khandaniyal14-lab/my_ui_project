@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Email Verification - Africa House Pakistan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #006A44 0%, #004d32 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #006A44;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #006A44;
+        }
+
+        .verify-btn {
+            background: linear-gradient(135deg, #006A44 0%, #004d32 100%);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s ease;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .help-text {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .help-text h3 {
+            color: #006A44;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .help-text ol {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .help-text li {
+            margin-bottom: 8px;
+        }
+
+        .back-link {
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #006A44;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Flash Messages */
+        .flash-message {
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .flash-error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .flash-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .flash-warning {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+
+        .flash-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Africa House Pakistan</div>
+        <div class="subtitle">Trade Portal</div>
+        
+        <h1>Manual Email Verification</h1>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="description">
+            <p>If the email verification link didn't work (common on mobile devices), you can verify your email manually using the form below.</p>
+        </div>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="Enter the email you used to register">
+            </div>
+            
+            <div class="form-group">
+                <label for="token">Verification Token:</label>
+                <input type="text" id="token" name="token" required 
+                       placeholder="Enter the token from your email">
+            </div>
+            
+            <button type="submit" class="verify-btn">Verify Email</button>
+        </form>
+        
+        <div class="help-text">
+            <h3>How to find your verification token:</h3>
+            <ol>
+                <li>Check your email from Africa House Pakistan</li>
+                <li>Look for the section that says "verification token"</li>
+                <li>Copy the token (it's a long string of letters and numbers)</li>
+                <li>Paste it in the field above</li>
+            </ol>
+        </div>
+        
+        <div class="help-text">
+            <h3>Still having trouble?</h3>
+            <p>If you can't find the verification token or this doesn't work:</p>
+            <ol>
+                <li>Try registering again with the same email</li>
+                <li>Make sure you're using the same device/browser</li>
+                <li>Check your spam/junk folder for the email</li>
+                <li>Contact support if the problem persists</li>
+            </ol>
+        </div>
+        
+        <div class="back-link">
+            <a href="{{ url_for('login') }}">← Back to Login</a> | 
+            <a href="{{ url_for('signup') }}">Register Again</a>
+        </div>
+    </div>
+</body>
+</html>

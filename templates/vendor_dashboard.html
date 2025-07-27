@@ -677,19 +677,7 @@
                     <img src="https://placehold.co/40x40/BF8521/ffffff?text=U" alt="User Profile">
                 </div>
                 <div class="profile-dropdown-content" id="profileDropdown">
-                    <a href="vendor_profile.html">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        Vendor Profile
-                    </a>
-                    <a href="vendor_profile.html?tab=personal">
-                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                        </svg>
-                        Personal Info
-                    </a>
+                    
                     <a href="vendor_profile.html?tab=company">
                         <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
                             <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path>
@@ -735,13 +723,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="connections_page.html">
+                        <a href="{{ url_for('connections_page') }}">
                             <img src="{{ url_for('static', filename='images/connect.png') }}" alt="">
-                            <span>Connections</span>
+                            <span>Products</span>
                         </a>
                     </li>
                     <li>
-                        <a href="leads_page.html">
+                        <a href="{{url_for('leads_page')}}">
                             <img src="{{ url_for('static', filename='images/search.png') }}" alt="">
                             <span>Leads</span>
                         </a>
@@ -755,7 +743,7 @@
                     <li>
                         <a href="vendor_profile.html">
                             <img src="{{ url_for('static', filename='images/DOWN.png') }}" alt="" style="width: 20px;">
-                            <span>Profile</span>
+                            <span>Company Profile</span>
                         </a>
                     </li>
                 </ul>

@@ -485,13 +485,20 @@
                 </div>
 
                 <p class="signup-link">If you have not account? <a href="/signup">Create an Account</a></p>
+
+                <div style="text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 8px;">Having trouble with email verification?</p>
+                    <a href="{{ url_for('manual_verification') }}" style="color: #006A44; text-decoration: none; font-size: 0.9em;">
+                        Manual Email Verification
+                    </a>
+                </div>
             </form>
         </div>
     </div>
 
      <footer class="main-footer">
         <div class="container">
-            <a href="#" class="logo">
+            <a href="{{url_for('index')}}" class="logo">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
                 <!-- <span>AFRICA HOUSE PAKISTAN</span> -->
             </a>

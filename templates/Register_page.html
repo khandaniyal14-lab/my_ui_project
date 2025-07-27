@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Your Account - Africa House Pakistan Trade Portal</title>
-    <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* Common Variables & Reset (from previous code, adjusted for Inter font) */
         :root {
-            --primary-green-dark: #006A44; /* Dark green from your provided code */
-            --primary-green: #006A44; /* Original green for form elements */
+            --primary-green-dark: #006A44;
+            /* Dark green from your provided code */
+            --primary-green: #006A44;
+            /* Original green for form elements */
             --light-green: #006A44;
             --text-color-dark: #333;
             --text-color-light: #fff;
             --input-border: #ccc;
             --input-focus-border: #888;
-            --button-bg: #BF8521; /* Gold color for the button */
+            --button-bg: #BF8521;
+            /* Gold color for the button */
             --button-text: #fff;
             --grey-text: #666;
             --light-grey-bg: #f5f5f5;
@@ -31,7 +36,8 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif; /* Changed to Inter as per your new code */
+            font-family: 'Inter', sans-serif;
+            /* Changed to Inter as per your new code */
             line-height: 1.6;
             color: var(--text-color-dark);
             background-color: var(--light-grey-bg);
@@ -56,7 +62,8 @@
 
         .left-panel {
             flex: 1;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 106, 68, 0.9)),url('/static/images/signup.jpg'); /* Placeholder image */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 106, 68, 0.9)), url('/static/images/signup.jpg');
+            /* Placeholder image */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -64,7 +71,8 @@
             justify-content: flex-end;
             padding: 40px;
             color: var(--text-color-light);
-            position: relative; /* For the overlay */
+            position: relative;
+            /* For the overlay */
         }
 
         .left-panel::before {
@@ -74,13 +82,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)); /* Dark gradient overlay */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+            /* Dark gradient overlay */
             z-index: 0;
         }
 
         .left-panel-content {
             position: relative;
-            z-index: 1; /* Ensure content is above overlay */
+            z-index: 1;
+            /* Ensure content is above overlay */
         }
 
         .left-panel h2 {
@@ -95,7 +105,8 @@
         }
 
         .right-panel {
-            flex: 1.2; /* Slightly larger to accommodate inputs */
+            flex: 1.2;
+            /* Slightly larger to accommodate inputs */
             padding: 40px;
             display: flex;
             flex-direction: column;
@@ -105,7 +116,8 @@
         .right-panel h1 {
             font-size: 2em;
             margin-bottom: 10px;
-            color: var(--primary-green-dark); /* Using the dark green from your footer */
+            color: var(--primary-green-dark);
+            /* Using the dark green from your footer */
             font-weight: 700;
         }
 
@@ -151,7 +163,7 @@
             border-color: var(--input-focus-border);
         }
 
- 
+
 
         .radio-group {
             display: flex;
@@ -180,7 +192,8 @@
         }
 
         .checkbox-group input[type="checkbox"] {
-            margin-top: 4px; /* Align with text */
+            margin-top: 4px;
+            /* Align with text */
             margin-right: 10px;
         }
 
@@ -191,7 +204,8 @@
         }
 
         .checkbox-group label a {
-            color: var(--primary-green-dark); /* Using the dark green from your footer */
+            color: var(--primary-green-dark);
+            /* Using the dark green from your footer */
             text-decoration: none;
             font-weight: 500;
         }
@@ -238,7 +252,8 @@
             align-items: center;
             font-weight: 700;
             font-size: 1.1rem;
-            color: #ffffff; /* Ensure logo text is white */
+            color: #ffffff;
+            /* Ensure logo text is white */
             text-decoration: none;
         }
 
@@ -258,11 +273,13 @@
 
         .social-links a {
             color: #ffffff;
-            display: flex; /* For proper SVG centering if needed */
+            display: flex;
+            /* For proper SVG centering if needed */
             align-items: center;
             justify-content: center;
             transition: color 0.3s ease;
         }
+
         .social-links a:hover {
             color: #ced4da;
         }
@@ -307,13 +324,15 @@
                 margin: 20px;
             }
 
-            .left-panel, .right-panel {
+            .left-panel,
+            .right-panel {
                 flex: none;
                 width: 100%;
             }
 
             .left-panel {
-                height: 300px; /* Adjust height for smaller screens */
+                height: 300px;
+                /* Adjust height for smaller screens */
                 padding: 30px;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
@@ -336,7 +355,9 @@
             }
         }
 
-        @media (max-width: 768px) { /* Adjusting breakpoints for footer responsiveness */
+        @media (max-width: 768px) {
+
+            /* Adjusting breakpoints for footer responsiveness */
             .main-footer .container {
                 flex-direction: column;
                 gap: 1.5rem;
@@ -369,29 +390,33 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="left-panel">
             <div class="left-panel-content">
                 <h2>Why Sign Up?</h2>
-                <p>Join Africa House Pakistan Trade Portal to discover opportunities and connect with trusted trade partners across Africa and Pakistan.</p>
+                <p>Join Africa House Pakistan Trade Portal to discover opportunities and connect with trusted trade
+                    partners across Africa and Pakistan.</p>
             </div>
         </div>
         <div class="right-panel">
             <h1>Create Your Account</h1>
-            <p class="intro-text">Sign up today to access exclusive trade leads, partner networks, and real-time market insights:</p>
+            <p class="intro-text">Sign up today to access exclusive trade leads, partner networks, and real-time market
+                insights:</p>
 
             <!-- Flash Messages -->
             {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <div class="flash-messages" style="margin-bottom: 20px;">
-                        {% for category, message in messages %}
-                            <div class="flash-message flash-{{ category }}" style="padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; font-weight: 500; border: 1px solid;">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
+            {% if messages %}
+            <div class="flash-messages" style="margin-bottom: 20px;">
+                {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}"
+                    style="padding: 12px 16px; border-radius: 8px; margin-bottom: 10px; font-weight: 500; border: 1px solid;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
             {% endwith %}
 
             <form method="POST" action="/signup">
@@ -402,6 +427,60 @@
                         <option value="pakistan">Pakistan</option>
                         <option value="nigeria">Nigeria</option>
                         <option value="south_africa">South Africa</option>
+                        <option value="algeria">Algeria</option>
+                        <option value="angola">Angola</option>
+                        <option value="benin">Benin</option>
+                        <option value="botswana">Botswana</option>
+                        <option value="burkina_faso">Burkina Faso</option>
+                        <option value="burundi">Burundi</option>
+                        <option value="cabo_verde">Cabo Verde</option>
+                        <option value="cameroon">Cameroon</option>
+                        <option value="central_african_republic">Central African Republic</option>
+                        <option value="chad">Chad</option>
+                        <option value="comoros">Comoros</option>
+                        <option value="congo_brazzaville">Congo-Brazzaville</option>
+                        <option value="congo_kinshasa">Congo-Kinshasa</option>
+                        <option value="cote_divoire">Côte d'Ivoire</option>
+                        <option value="djibouti">Djibouti</option>
+                        <option value="egypt">Egypt</option>
+                        <option value="equatorial_guinea">Equatorial Guinea</option>
+                        <option value="eritrea">Eritrea</option>
+                        <option value="eswatini">Eswatini</option>
+                        <option value="ethiopia">Ethiopia</option>
+                        <option value="gabon">Gabon</option>
+                        <option value="gambia">Gambia</option>
+                        <option value="ghana">Ghana</option>
+                        <option value="guinea">Guinea</option>
+                        <option value="guinea_bissau">Guinea-Bissau</option>
+                        <option value="kenya">Kenya</option>
+                        <option value="lesotho">Lesotho</option>
+                        <option value="liberia">Liberia</option>
+                        <option value="libya">Libya</option>
+                        <option value="madagascar">Madagascar</option>
+                        <option value="malawi">Malawi</option>
+                        <option value="mali">Mali</option>
+                        <option value="mauritania">Mauritania</option>
+                        <option value="mauritius">Mauritius</option>
+                        <option value="morocco">Morocco</option>
+                        <option value="mozambique">Mozambique</option>
+                        <option value="namibia">Namibia</option>
+                        <option value="niger">Niger</option>
+                        <option value="nigeria">Nigeria</option>
+                        <option value="rwanda">Rwanda</option>
+                        <option value="sao_tome_principe">São Tomé & Príncipe</option>
+                        <option value="senegal">Senegal</option>
+                        <option value="seychelles">Seychelles</option>
+                        <option value="sierra_leone">Sierra Leone</option>
+                        <option value="somalia">Somalia</option>
+                        <option value="south_africa">South Africa</option>
+                        <option value="south_sudan">South Sudan</option>
+                        <option value="sudan">Sudan</option>
+                        <option value="tanzania">Tanzania</option>
+                        <option value="togo">Togo</option>
+                        <option value="tunisia">Tunisia</option>
+                        <option value="uganda">Uganda</option>
+                        <option value="zambia">Zambia</option>
+                        <option value="zimbabwe">Zimbabwe</option>
                     </select>
                 </div>
 
@@ -412,10 +491,10 @@
                             <input type="radio" id="buyer" name="role" value="buyer" checked> Buyer
                         </label>
                         <label for="vendor">
-                            <input type="radio" id="vendor" name="role" value="vendor"> Vendor
+                            <input type="radio" id="vendor" name="role" value="vendor"> Seller
                         </label>
                         <label for="admin">
-                            <input type="radio" id="admin" name="role" value="admin"> Admin
+                            <input type="radio" id="admin" name="role" value="admin"> Facilitator
                         </label>
                     </div>
                 </div>
@@ -425,34 +504,100 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Enter the login Password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter the login Password"
+                        required>
                 </div>
 
                 <div class="form-group">
-                    <input type="password" id="password_again" name="password_again" placeholder="Enter the login Password again" required>
+                    <input type="password" id="password_again" name="password_again"
+                        placeholder="Enter the login Password again" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" id="company_name" name="company_name" placeholder="Enter Your Company Name Here" required>
+                    <input type="text" id="company_name" name="company_name" placeholder="Enter Your Company Name Here"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <input type="text" id="full_name" name="full_name" placeholder="Enter Your Full Name" required>
                 </div>
 
-                <div class="form-group">
-                    <input type="tel" id="mobile_number" name="mobile_number" placeholder="Enter Your Mobile Number" required>
+                <div class="form-group" style="display: flex; gap: 10px; align-items: center;">
+                    <select name="country_code" id="country_code" required style="flex: 0 0 100px; padding: 8px; font-size: 1rem;">
+                        <option value="+92" data-flag="PK">PK +92</option>
+                        <option value="+213" data-flag="🇩🇿">DZ +213</option>
+                        <option value="+244" data-flag="🇦🇴">AO +244</option>
+                        <option value="+229" data-flag="🇧🇯">BJ +229</option>
+                        <option value="+226" data-flag="🇧🇫">BF +226</option>
+                        <option value="+257" data-flag="🇧🇮">BI +257</option>
+                        <option value="+237" data-flag="🇨🇲">CM +237</option>
+                        <option value="+238" data-flag="🇨🇻">CV +238</option>
+                        <option value="+236" data-flag="🇨🇫">CF +236</option>
+                        <option value="+235" data-flag="🇹🇩">TD +235</option>
+                        <option value="+269" data-flag="🇰🇲">KM +269</option>
+                        <option value="+243" data-flag="🇨🇩">CD +243</option>
+                        <option value="+242" data-flag="🇨🇬">CG +242</option>
+                        <option value="+225" data-flag="🇨🇮">CI +225</option>
+                        <option value="+253" data-flag="🇩🇯">DJ +253</option>
+                        <option value="+20" data-flag="🇪🇬">EG +20</option>
+                        <option value="+240" data-flag="🇬🇶">GQ +240</option>
+                        <option value="+291" data-flag="🇪🇷">ER +291</option>
+                        <option value="+268" data-flag="🇸🇿">SZ +268</option>
+                        <option value="+251" data-flag="🇪🇹">ET +251</option>
+                        <option value="+241" data-flag="🇬🇦">GA +241</option>
+                        <option value="+220" data-flag="🇬🇲">GM +220</option>
+                        <option value="+233" data-flag="🇬🇭">GH +233</option>
+                        <option value="+224" data-flag="🇬🇳">GN +224</option>
+                        <option value="+245" data-flag="🇬🇼">GW +245</option>
+                        <option value="+254" data-flag="🇰🇪">KE +254</option>
+                        <option value="+266" data-flag="🇱🇸">LS +266</option>
+                        <option value="+231" data-flag="🇱🇷">LR +231</option>
+                        <option value="+218" data-flag="🇱🇾">LY +218</option>
+                        <option value="+261" data-flag="🇲🇬">MG +261</option>
+                        <option value="+265" data-flag="🇲🇼">MW +265</option>
+                        <option value="+223" data-flag="🇲🇱">ML +223</option>
+                        <option value="+222" data-flag="🇲🇷">MR +222</option>
+                        <option value="+230" data-flag="🇲🇺">MU +230</option>
+                        <option value="+212" data-flag="🇲🇦">MA +212</option>
+                        <option value="+258" data-flag="🇲🇿">MZ +258</option>
+                        <option value="+264" data-flag="🇳🇦">NA +264</option>
+                        <option value="+227" data-flag="🇳🇪">NE +227</option>
+                        <option value="+234" data-flag="🇳🇬">NG +234</option>
+                        <option value="+250" data-flag="🇷🇼">RW +250</option>
+                        <option value="+239" data-flag="🇸🇹">ST +239</option>
+                        <option value="+221" data-flag="🇸🇳">SN +221</option>
+                        <option value="+248" data-flag="🇸🇨">SC +248</option>
+                        <option value="+232" data-flag="🇸🇱">SL +232</option>
+                        <option value="+252" data-flag="🇸🇴">SO +252</option>
+                        <option value="+27" data-flag="🇿🇦">ZA +27</option>
+                        <option value="+211" data-flag="🇸🇸">SS +211</option>
+                        <option value="+249" data-flag="🇸🇩">SD +249</option>
+                        <option value="+255" data-flag="🇹🇿">TZ +255</option>
+                        <option value="+228" data-flag="🇹🇬">TG +228</option>
+                        <option value="+216" data-flag="🇹🇳">TN +216</option>
+                        <option value="+256" data-flag="🇺🇬">UG +256</option>
+                        <option value="+260" data-flag="🇿🇲">ZM +260</option>
+                        <option value="+263" data-flag="🇿🇼">ZW +263</option>
+                    </select>
+
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter Your Mobile Number" required
+                        style="flex: 1; padding: 8px; font-size: 1rem;">
                 </div>
+
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="terms_agreement" name="terms_agreement" required>
-                    <label for="terms_agreement">By signing up, you agree to the Africa House Pakistan Trade Portal's <a href="#">Membership Agreement</a>, <a href="#">Terms of Use</a>, and <a href="#">Privacy Policy</a>.</label>
+                    <label for="terms_agreement">By signing up, you agree to the Africa House Pakistan Trade Portal's <a
+                            href="#">Membership Agreement</a>, <a href="#">Terms of Use</a>, and <a href="#">Privacy
+                            Policy</a>.</label>
                 </div>
 
                 <button type="submit" class="create-account-btn">Create an Account</button>
 
-                <p class="login-link" style="text-align: center; margin-top: 20px; font-size: 0.95em; color: var(--grey-text);">
-                    Already have an account? <a href="/login.html" style="color: var(--primary-green-dark); text-decoration: none; font-weight: 500;">Sign In</a>
+                <p class="login-link"
+                    style="text-align: center; margin-top: 20px; font-size: 0.95em; color: var(--grey-text);">
+                    Already have an account? <a href="/login.html"
+                        style="color: var(--primary-green-dark); text-decoration: none; font-weight: 500;">Sign In</a>
                 </p>
             </form>
         </div>
@@ -460,24 +605,38 @@
 
     <footer class="main-footer">
         <div class="container">
-            <a href="main_page.html" class="logo">
+            <a href="/" class="logo">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
-                
+
             </a>
             <p class="copyright">&copy; 2025 Africa House Trade Portal. All Rights Reserved.</p>
             <div class="social-links">
                 <a href="www.facebook.com" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
                 </a>
                 <a href="www.twitter.com" aria-label="Twitter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z">
+                        </path>
+                    </svg>
                 </a>
                 <a href="www.linkedin.com" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z">
+                        </path>
+                    </svg>
                 </a>
             </div>
         </div>
     </footer>
 
 </body>
+
 </html>

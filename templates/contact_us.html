@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Africa House Pakistan Trade Portal</title>
+    <link rel="icon" href="https://placehold.co/40x40/ffffff/1E3923?text=AHP" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        /* Variables */
+        :root {
+            --primary-green: #006A44;
+            --dark-green: #1E3923;
+            --light-green: #E6F3EE;
+            --gold: #BF8521;
+            --dark-grey-text: #333333;
+            --medium-grey-text: #666666;
+            --light-grey-bg: #F5F5F5;
+            --white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --shadow: rgba(0, 0, 0, 0.05);
+            --success-green: #10b981;
+            --error-red: #ef4444;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-grey-text);
+            background-color: var(--light-grey-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-grow: 1;
+            width: 100%;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 15px var(--shadow);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--primary-green);
+            box-shadow: 0 2px 4px var(--shadow);
+            min-height: 70px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark-green);
+            text-decoration: none;
+        }
+
+        .header-logo img {
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-item {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            font-size: 0.9em;
+            font-weight: 500;
+            padding-right: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .header-item:hover {
+            color: #e5e7eb;
+        }
+
+        .header-item svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-grey-text);
+            font-weight: 600;
+            overflow: hidden;
+            border: 2px solid var(--primary-green);
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+            margin-top: 5px;
+        }
+
+        .profile-dropdown-content a {
+            color: var(--dark-grey-text);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .profile-dropdown-content a:hover {
+            background-color: var(--light-grey-bg);
+        }
+
+        .profile-dropdown.show .profile-dropdown-content {
+            display: block;
+        }
+
+        .profile-dropdown-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--medium-grey-text);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--dark-green);
+            padding: 30px 0;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            position: relative;
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--primary-green);
+            border-left: 5px solid var(--gold);
+            padding-left: 25px;
+        }
+
+        .sidebar-nav a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-nav a svg {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: var(--light-grey-bg);
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: var(--dark-grey-text);
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.1em;
+            color: var(--medium-grey-text);
+            line-height: 1.6;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px var(--shadow);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h2 {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--dark-grey-text);
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            font-size: 1.1em;
+            color: var(--medium-grey-text);
+            line-height: 1.6;
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .alert-error {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+        }
+
+        .alert svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .alert.hidden {
+            display: none;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--dark-grey-text);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-group label svg {
+            width: 16px;
+            height: 16px;
+            color: var(--primary-green);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            background-color: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(0, 106, 68, 0.1);
+        }
+
+        .form-group input:hover,
+        .form-group select:hover,
+        .form-group textarea:hover {
+            border-color: var(--primary-green);
+        }
+
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: var(--error-red);
+            background-color: #fef2f2;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.85em;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            transform: translateY(0);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 106, 68, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .contact-info {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .contact-info p {
+            color: var(--medium-grey-text);
+            font-size: 0.95em;
+        }
+
+        .contact-info a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--primary-green);
+            color: #e5e7eb;
+            padding: 40px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .footer-logo img {
+            width: 220px;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ced4da;
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 20px 0;
+                order: -1;
+                height: auto;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .sidebar-nav ul {
+                display: flex;
+                justify-content: center;
+                padding: 0 20px;
+            }
+
+            .sidebar-nav li {
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+
+            .sidebar-nav a {
+                padding: 10px 15px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                flex-direction: column;
+                text-align: center;
+                min-width: 80px;
+            }
+
+            .sidebar-nav a.active {
+                background-color: transparent;
+                border-bottom-color: var(--gold);
+                padding-left: 15px;
+            }
+
+            .sidebar-nav a svg {
+                margin: 0 auto 5px auto;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .contact-form-container {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .header-logo img {
+                width: 150px;
+            }
+
+            .page-header h1 {
+                font-size: 2em;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-form-container {
+                padding: 24px;
+            }
+
+            .form-header h2 {
+                font-size: 1.8em;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-logo img {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 15px;
+            }
+
+            .contact-form-container {
+                padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 1.8em;
+            }
+
+            .form-header h2 {
+                font-size: 1.5em;
+            }
+
+            .sidebar-nav a {
+                font-size: 0.8em;
+                padding: 8px 10px;
+                min-width: 70px;
+            }
+
+            .sidebar-nav a svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <a href="/" class="header-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="header-item">
+                <a href="{{ url_for('ai_assistant_page') }}"
+                    style="display: flex; align-items: center; color: inherit; text-decoration: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 8V4H8" />
+                        <rect width="16" height="12" x="4" y="8" rx="2" />
+                        <path d="m9 16 .5-1 2 2 4-4" />
+                    </svg>
+                    <span style="margin-left: 8px;">AI Assistant</span>
+                </a>
+            </div>
+
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="m9 12 2 2 4-4" />
+                </svg>
+                Help
+            </div>
+            <div class="profile-dropdown">
+                <div class="profile-pic" onclick="toggleProfileDropdown()">
+                    <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop"
+                        alt="User Profile">
+                </div>
+                <div class="profile-dropdown-content" id="profileDropdown">
+                    <a href="vendor_profile.html?tab=company">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z">
+                            </path>
+                        </svg>
+                        Company Profile
+                    </a>
+                    <a href="#">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                        Account Settings
+                    </a>
+                    <a href="{{ url_for('logout') }}" style="color: #dc3545;">
+                        <svg class="profile-dropdown-icon" viewBox="0 0 24 24" style="fill: #dc3545;">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16,17 21,12 16,7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Contact Us</h1>
+                <p>Ready to expand your business in Africa? Get in touch with our team to explore trade opportunities
+                    and partnerships.</p>
+            </div>
+
+            <div class="contact-form-container">
+                <div class="form-header">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                </div>
+
+                <!-- Success Alert -->
+                <div id="successAlert" class="alert alert-success hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22,4 12,14.01 9,11.01" />
+                    </svg>
+                    <span>Message sent successfully! We'll get back to you soon.</span>
+                </div>
+
+                <!-- Error Alert -->
+                <div id="errorAlert" class="alert alert-error hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="15" y1="9" x2="9" y2="15" />
+                        <line x1="9" y1="9" x2="15" y2="15" />
+                    </svg>
+                    <span>Failed to send message. Please try again or contact us directly.</span>
+                </div>
+
+                <form id="contactForm" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                Full Name *
+                            </label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyName">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                                    <path d="M10 6h4" />
+                                    <path d="M10 10h4" />
+                                    <path d="M10 14h4" />
+                                    <path d="M10 18h4" />
+                                </svg>
+                                Company Name *
+                            </label>
+                            <input type="text" id="companyName" name="companyName" placeholder="Enter your company name"
+                                required>
+                            <div class="error-message" id="companyNameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-10 5L2 7" />
+                            </svg>
+                            Email Address *
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purpose">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg>
+                            Purpose *
+                        </label>
+                        <select id="purpose" name="purpose" required>
+                            <option value="">Select purpose of contact</option>
+                            <option value="Business Partnership">Business Partnership</option>
+                            <option value="Product Inquiry">Product Inquiry</option>
+                            <option value="Trade Opportunity">Trade Opportunity</option>
+                            <option value="General Information">General Information</option>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Investment Opportunity">Investment Opportunity</option>
+                        </select>
+                        <div class="error-message" id="purposeError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                            Subject *
+                        </label>
+                        <textarea id="subject" name="subject"
+                            placeholder="Describe your inquiry or message in detail..." required></textarea>
+                        <div class="error-message" id="subjectError"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m22 2-7 20-4-9-9-4Z" />
+                            <path d="M22 2 11 13" />
+                        </svg>
+                        Send Message
+                    </button>
+                </form>
+
+                <div class="contact-info">
+                    <p>You can also reach us directly at
+                        <a href="mailto:info@africahousepakistan.com">info@africahousepakistan.com</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="/" class="footer-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+                    alt="Africa House Pakistan">
+            </a>
+            <p class="footer-copyright">&copy; 2025 Africa House Trade Portal. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.55v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.94.08c.55 1.7 2.14 2.93 4.03 2.96-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21c7.34 0 11.35-6.08 11.35-11.35 0-.17 0-.34-.01-.51.78-.57 1.45-1.28 1.99-2.09z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm-1.39 9.94v-8.37H8.27v8.37H5.49z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        })();
+
+        // Profile dropdown functionality
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            const profileDropdown = dropdown.parentElement;
+            profileDropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function (event) {
+            const profileDropdown = document.querySelector('.profile-dropdown');
+            if (!profileDropdown.contains(event.target)) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+
+        // Form validation and submission
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successAlert = document.getElementById('successAlert');
+            const errorAlert = document.getElementById('errorAlert');
+
+            // Form validation
+            function validateField(field, errorElement, validationFn) {
+                const value = field.value.trim();
+                const error = validationFn(value);
+
+                if (error) {
+                    field.parentElement.classList.add('error');
+                    errorElement.textContent = error;
+                    return false;
+                } else {
+                    field.parentElement.classList.remove('error');
+                    errorElement.textContent = '';
+                    return true;
+                }
+            }
+
+            function validateName(value) {
+                if (!value) return 'Name is required';
+                if (value.length < 2) return 'Name must be at least 2 characters';
+                return null;
+            }
+
+            function validateCompanyName(value) {
+                if (!value) return 'Company name is required';
+                if (value.length < 2) return 'Company name must be at least 2 characters';
+                return null;
+            }
+
+            function validateEmail(value) {
+                if (!value) return 'Email is required';
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) return 'Please enter a valid email address';
+                return null;
+            }
+
+            function validatePurpose(value) {
+                if (!value) return 'Purpose is required';
+                return null;
+            }
+
+            function validateSubject(value) {
+                if (!value) return 'Subject is required';
+                if (value.length < 10) return 'Subject must be at least 10 characters';
+                return null;
+            }
+
+            // Real-time validation
+            const nameField = document.getElementById('name');
+            const companyNameField = document.getElementById('companyName');
+            const emailField = document.getElementById('email');
+            const purposeField = document.getElementById('purpose');
+            const subjectField = document.getElementById('subject');
+
+            nameField.addEventListener('blur', () => validateField(nameField, document.getElementById('nameError'), validateName));
+            companyNameField.addEventListener('blur', () => validateField(companyNameField, document.getElementById('companyNameError'), validateCompanyName));
+            emailField.addEventListener('blur', () => validateField(emailField, document.getElementById('emailError'), validateEmail));
+            purposeField.addEventListener('change', () => validateField(purposeField, document.getElementById('purposeError'), validatePurpose));
+            subjectField.addEventListener('blur', () => validateField(subjectField, document.getElementById('subjectError'), validateSubject));
+
+            // Clear errors on input
+            [nameField, companyNameField, emailField, purposeField, subjectField].forEach(field => {
+                field.addEventListener('input', () => {
+                    if (field.parentElement.classList.contains('error')) {
+                        field.parentElement.classList.remove('error');
+                        const errorElement = field.parentElement.querySelector('.error-message');
+                        if (errorElement) errorElement.textContent = '';
+                    }
+                });
+            });
+
+            // Form submission
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('contactForm');
+                const submitBtn = document.getElementById('submitBtn');
+                const successAlert = document.getElementById('successAlert');
+                const errorAlert = document.getElementById('errorAlert');
+
+                const nameField = document.getElementById('name');
+                const companyNameField = document.getElementById('companyName');
+                const emailField = document.getElementById('email');
+                const purposeField = document.getElementById('purpose');
+                const subjectField = document.getElementById('subject');
+
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    successAlert.classList.add('hidden');
+                    errorAlert.classList.add('hidden');
+
+                    // Your validateField calls (as you already have)
+                    const isNameValid = validateField(nameField, document.getElementById('nameError'), validateName);
+                    const isCompanyValid = validateField(companyNameField, document.getElementById('companyNameError'), validateCompanyName);
+                    const isEmailValid = validateField(emailField, document.getElementById('emailError'), validateEmail);
+                    const isPurposeValid = validateField(purposeField, document.getElementById('purposeError'), validatePurpose);
+                    const isSubjectValid = validateField(subjectField, document.getElementById('subjectError'), validateSubject);
+
+                    if (!isNameValid || !isCompanyValid || !isEmailValid || !isPurposeValid || !isSubjectValid) {
+                        return;
+                    }
+
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = `
+            <div class="loading-spinner"></div>
+            Sending...
+        `;
+
+                    try {
+                        const result = await emailjs.send(
+                            'YOUR_SERVICE_ID',
+                            'YOUR_TEMPLATE_ID',
+                            {
+                                from_name: nameField.value,
+                                from_company: companyNameField.value,
+                                from_email: emailField.value,
+                                purpose: purposeField.value,
+                                subject: subjectField.value,
+                                to_email: 'your-email@example.com',
+                            }
+                        );
+
+                        if (result.status === 200 || result.text === "OK") {
+                            successAlert.classList.remove('hidden');
+                            errorAlert.classList.add('hidden');
+                            form.reset();
+                            successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else {
+                            throw new Error("Email service returned error");
+                        }
+
+                    } catch (error) {
+                        console.error('Error sending email:', error);
+                        errorAlert.classList.remove('hidden');
+                        successAlert.classList.add('hidden');
+                        errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m22 2-7 20-4-9-9-4Z"/>
+                    <path d="M22 2 11 13"/>
+                </svg>
+                Send Message
+            `;
+
+                        setTimeout(() => {
+                            successAlert.classList.add('hidden');
+                            errorAlert.classList.add('hidden');
+                        }, 5000);
+                    }
+                });
+            });
+    </script>
+    <script>
+            document.getElementById('contactForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const submitBtn = document.getElementById('submitBtn');
+                const successAlert = document.getElementById('successAlert');
+                const errorAlert = document.getElementById('errorAlert');
+
+                // Hide both alerts before sending
+                successAlert.classList.add('hidden');
+                errorAlert.classList.add('hidden');
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch('/submit_contact_form', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const contentType = response.headers.get("content-type");
+                    if (!contentType || !contentType.includes("application/json")) {
+                        throw new Error("Invalid response from server");
+                    }
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
+                        successAlert.classList.remove('hidden');
+                        errorAlert.classList.add('hidden');
+                        document.getElementById('contactForm').reset();
+                    } else {
+                        throw new Error("Server returned failure");
+                    }
+
+                } catch (error) {
+                    console.error("Form submission failed:", error);
+                    errorAlert.classList.remove('hidden');
+                    successAlert.classList.add('hidden');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            });
+    </script>
+
+
+
+</body>
+
+</html>
