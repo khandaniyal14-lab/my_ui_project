@@ -686,7 +686,7 @@ def login():
             if role == 'vendor':
                 return redirect('/vendor_dashboard.html')
             else:
-                return redirect('/leads_page.html')  # Default for other roles
+                return redirect('/vendor_dashboard.html')  # Default for other roles
 
         except Exception as e:
             print(f"Login error: {str(e)}")
