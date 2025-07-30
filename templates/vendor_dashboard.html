@@ -783,22 +783,26 @@
                 </div>
             </div>
 
-            <div class="ai-assistant-card">
-                <div class="ai-assistant-card-left">
-                    <div class="ai-assistant-card-icon">
-                       <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="">
+            <a href="{{ url_for('ai_assistant_page') }}" class="ai-assistant-link">
+                <div class="ai-assistant-card">
+                    <div class="ai-assistant-card-left">
+                        <div class="ai-assistant-card-icon">
+                            <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="">
+                        </div>
+                        <div class="ai-assistant-card-text">
+                            <h2>AI Assistant</h2>
+                            <p>Here’s How I Can Support Your Digital Growth?</p>
+                        </div>
                     </div>
-                    <div class="ai-assistant-card-text">
-                        <h2>AI Assistant</h2>
-                        <p>Here’s How I Can Support Your Digital Growth?</p>
+                    <div class="ai-assistant-card-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
                     </div>
                 </div>
-                <div class="ai-assistant-card-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right">
-                        <path d="m9 18 6-6-6-6"/>
-                    </svg>
-                </div>
-            </div>
+            </a>
 
             <h3>Lead Recommendations</h3>
             <div class="list-section">
